@@ -5,15 +5,9 @@ body {
 
 }
 .heder-text-style{
-    font-size: 0.8vw;
+    font-size: 0.9vw;
 }
-/* header.container11 {
-  background-color: black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-} */
+
 .navheader {
     background-color: black;
     display: flex;
@@ -22,64 +16,61 @@ body {
 }
 
 
-#logo {
+#left-nav {
+  display: flex;
     padding: 1% 1% 1% 1%;
-    width: 12%;
+    width: 25%;
 }
-
-
-#logo > a {
+.navCartImage{
+  position: relative;
+  width: 40%;
+   padding: 4% 0 0 0; 
+}
+.cartItemNum{
+  position: absolute;
+  left: 94%;
+  top: -5%;
+  font-weight: bold;
+  color: rgb(177, 54, 54);
+  
+}
+/* #left-nav>.locationdiv> a {
+  text-decoration: none;
+  color: antiquewhite;
+   box-sizing: content-box;
+   display: flex;
+   align-items: center;
+   height: 80%;
+   width: 100%;
+   padding:0.5% 5% 0.5% 5% ;
+} */
+#left-nav >div> a {
+ text-decoration: none;
+ color: antiquewhite;
   box-sizing: content-box;
   display: flex;
   align-items: center;
-  height: 50px;
-  width: 95%;
+  height: 100%;
+  width: 90%;
+  padding:0.5% 5% 0.5% 5% ;
+  margin-left: 3%;
 }
 
-#logo2 {
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    width: 8%;
+#left-nav >div> a:hover {
+  border: 1px solid white;
+  border-radius: 2%;
+  color: antiquewhite;
 }
+
+
 #logo3 {
   display: none;
 }
 #mobilediv{
   display: none;
 }
-#logo2 a {
-  padding-right: 0px;
-}
 
-#logo2:hover {
-  border: 1px solid white;
-  border-radius: 2%;
-
-}
-
-#logo > .logo {
-  margin: 1%;
-}
-
-#logo > .logo:hover {
-  border: 1px solid white;
-  border-radius: 5%;
-
-}
-#loc{
-    text-decoration: none;
-    color: antiquewhite;
-}
-
-#logo > #loc > div:hover {
-  border: 1px solid white;
-  border-radius: 5%;
-  margin-right: -2%;
-}
-
-
-
-#div11 {
+#right-nav {
   display: flex;
   margin: 0;
 
@@ -89,19 +80,15 @@ body {
   height: 50px;
   width: 35%;
 }
-@media screen and (max-width:550px) {
-  #div11 {
-    display: none;
-  }
-}
-#div11 > ul {
+
+#right-nav > ul {
   padding: 0 0 0 0;
   margin: 0;
   height: 100%;
   width: 100%;
 }
 
-#div11 li {
+#right-nav li {
   margin-left: 2%;
   display: inline;
   float: left;
@@ -112,7 +99,7 @@ body {
   align-items: baseline;
 }
 
-#div11 li a {
+#right-nav li a {
   padding: 1% 7% 4% 7%;
   display: flex;
   justify-content: flex-start;
@@ -123,13 +110,13 @@ body {
   flex-wrap: wrap;
 }
 
-#div11 li:hover {
+#right-nav li:hover {
   border: 1px solid white;
   border-radius: 2%;
   padding: 0 0 0 0;
 }
 
-#div11 a div {
+#right-nav a div {
   font-size: 1vw;
   height: 49%;
   padding: 3% 0 0 0;
@@ -139,14 +126,14 @@ body {
   width: 40%;
   height: 50%;
 }
-#div11 a div > span {
+#right-nav a div > span {
   height: 50%;
   padding: 0 8% 0 0;
   text-align: left;
   font-size: 1vw;
 }
 
-#div11 a span {
+#right-nav a span {
   height: 50%;
   padding: 0 8% 0 0;
   text-align: left;
@@ -156,9 +143,22 @@ body {
 button:hover {
   background-color: #bbb5b5;
 }
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
 
-#divsearch {
-  margin-left: 1%;
+.navsearch {
+  /* margin-left: 1%; */
   margin-right: 1%;
   background-color: aliceblue;
   width: 54%;
@@ -171,42 +171,44 @@ button:hover {
   border-radius: 5px;
 }
 
-#divsearch input:focus {
+.navsearch input:focus {
   box-shadow: none;
   outline: none;
 }
 
-#divsearch input {
+.navsearch input {
   border: 0;
   width: 86%;
   height: 100%;
 }
 
-#divsearch button {
+.navsearch button {
   border: 0;
   height: 100%;
   width: 8%;
   border-radius: 0 5% 5% 0;
 }
 
-#divsearch button.book {
+.navsearch button.book {
   border-radius: 5% 0 0 5%;
   background-color: #b3b3b3;
 }
 
-#divsearch button.book:hover {
+.navsearch button.book:hover {
   background-color: #919191;
 }
 
-#divsearch button.search {
+.navsearch button.search {
   width: 6%;
   background-color: rgb(218, 171, 43);
 }
 
-#divsearch button.search:hover {
+.navsearch button.search:hover {
   background-color: rgb(160, 120, 9);
 }
-
+.navsearchmobile{
+  display: none;
+}
 
 #logo a div {
   display: inline;
@@ -215,49 +217,48 @@ button:hover {
   color: aliceblue;
 }
 
-#div22 {
-    position: absolute;
-    background-color: rgb(249, 252, 252);
-    display: none;
-    height: 70%;
-    overflow-y: scroll;
-    width: 46.0%;
-    top: 7.5%;
-    right: 32.7%;
-    border: 2px solid rgb(39, 38, 38);
-    z-index: 100;
+#searchResults {
+  position: absolute;
+  background-color: rgb(246, 248, 248);
+  height: 70%;
+  overflow-y: scroll;
+  width: 43%;
+  top: 7.9%;
+  right: 31.4%;
+  border: 2px solid rgb(194, 194, 194);
+  z-index: 100;
   }
-  #list {
-    margin: 0;
-    padding: 0;
-  }
-  #list li {
-    list-style-type: none;
+
+  .list{
     width: 100%;
     height: 10%;
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: left;
-    margin-left: 0.5%;
     align-items: center;
-    padding-left: 6%;
+    padding-left: 1%;
     cursor: pointer;
   }
-  
-  #list li span {
-    padding-left: 6%;
+  .imgsearch{
+    display: flex;
+    align-items: center;
+    width: 10%;
+    height: 70%;
   }
-  
-  #div22:hover {
-    display: block;
-  }
+ .linkSearchitem{
+    border-bottom:1px solid rgb(184, 183, 183);;
+    text-decoration: none;
+    color: black;
+ }
+.linkSearchitem:hover{
+    color: black;
+    background-color: #dbd9d9;
+}
   
   #div-sign-tem {
     position: absolute;
     background-color: rgb(249, 252, 252);
-    display: none;
+    /* display: none; */
     width: 39%;
-    top: 7.5%;
+    top: 9%;
     left: 57%;
     border-radius: 5px;
     padding-bottom: 5%;
@@ -292,9 +293,13 @@ button:hover {
   
   #div-sign-arrow {
     position: absolute;
-    display: none;
-    left: 83.7%;
+    left: 83.35%;
     top: 6.7%;
+  }
+  #langArrow{
+    position: absolute;
+    left: 40%;
+    top: 9.7%;
   }
   
   #div-sign-arrow::before {
@@ -311,9 +316,8 @@ button:hover {
   #divlangitem {
     position: absolute;
     background-color: rgb(249, 252, 252);
-    display: none;
     width: 19%;
-    top: 8%;
+    top: 8.7%;
     left: 66%;
     padding-top: 10px;
     padding-bottom: 15px;
@@ -323,15 +327,16 @@ button:hover {
   }
   #divlangitem:hover {
     display: block;
+
   }
   .langselect {
     display: flex;
     align-items: center;
-    padding-top: 3%;
+    padding-top: 10%;
   }
   
   .langselect label {
-    padding-left: 3%;
+    padding-left: 10%;
   }
   
   .langselect:hover {
@@ -341,7 +346,8 @@ button:hover {
   
   #spanlang {
     position: absolute;
-    display: none;
+    left: 73.45%;
+    top: 6.5%;
   }
   
   #spanlang::before {
@@ -351,11 +357,12 @@ button:hover {
     height: 0;
     border: 8px solid;
     border-color: transparent transparent rgb(231, 228, 228) transparent;
-    left: 524%;
+    left: 15%;
     top: -2.7%;
   }
   
   #spanarrow {
+    padding-right: 1%;
     position: relative;
   }
   
@@ -366,9 +373,9 @@ button:hover {
     height: 0;
     border: 4px solid;
     border-color: white transparent transparent transparent;
-    right: -27%;
+    right: -45%;
     top: 67%;
-  }
+  } 
   
   #signarrow {
     position: relative;
@@ -385,23 +392,7 @@ button:hover {
     top: 85%;
   }
   
-  #div22 a {
-    text-decoration: none;
-    color: rgb(26, 27, 27);
-    /* padding: 4px 4px 4px 4px; */
-    background-color: #bbb5b5;
-  }
-  
-  #div22 a :hover {
-    /* padding: 2px 2px 2px 2px; */
-    background-color: #bbb7b7;
-  }
-  
-  #div22 .card {
-    margin-top: 5%;
-    padding-left: 5%;
-    padding-top: 5%;
-  }
+
   #openmenu{
     position: absolute;
    
@@ -417,34 +408,15 @@ button:hover {
 
 
 
-@media only screen and (max-width: 768px) {    
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      
-      @import url("https://fonts.cdnfonts.com/css/amazon-ember");
+@media only screen and (max-width: 900px) {    
 
 
 
 
 
 
-     
-body {
-    font-family: "Amazon Ember", sans-serif;
 
-  }
-  
-  header.container11 {
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
+
   .navheader {
     margin: 0;
     background-color: black;
@@ -457,11 +429,7 @@ body {
     width: 100%;
   }
   
-  header.container11.logo {
-    box-sizing: border-box;
-    display: flex;
-    /* padding: 1% 0 1% 1%; */
-  }
+
   #logo {
     display: inline;
     float: center;
@@ -474,7 +442,6 @@ body {
     box-sizing: content-box;
     display: flex;
     align-items: center;
-    /* margin: 5px; */
     height: 42px;
     width: 95%;
   }
@@ -514,10 +481,21 @@ body {
     border-radius: 5%;
     margin-right: -2%;
   }
+  #divlangitem {
+    position: absolute;
+    background-color: rgb(249, 252, 252);
+    width: 19%;
+    top: 8.7%;
+    left: 66%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    border-radius: 2%;
+    z-index: 100;
+  }
   
   
-  
-  #div11 {
+  #right-nav {
     display: flex;
     margin: 0;
   
@@ -528,25 +506,12 @@ body {
     width: 35%;
   }
   
-  #div11 > ul {
-    padding: 0 0 0 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
-  
-  #div11 li {
-    margin-left: 2%;
-    display: inline;
-    float: left;
-    height: 100%;
-    width:  22%;
-  }
+
   .langarrow {
     align-items: baseline;
   }
   
-  #div11 li a {
+  #right-nav li a {
     padding: 1% 7% 4% 7%;
     display: flex;
     justify-content: flex-start;
@@ -556,17 +521,17 @@ body {
     text-align: center;
     flex-wrap: wrap;
   }
-  #div11 li a img{
+  #right-nav li a img{
     width: 80%;
   }
 
-  #div11 li:hover {
+  #right-nav li:hover {
     border: 1px solid white;
     border-radius: 2%;
     padding: 0 0 0 0;
   }
   
-  #div11 a div {
+  #right-nav a div {
     font-size: 1.8vw;
     height: 49%;
     padding: 15% 0 0 0;
@@ -578,7 +543,7 @@ body {
     height: 85;
   }
   
-  #div11 a div > span {
+  #right-nav a div > span {
     height: 50%;
     padding: 0 8% 0 0;
     text-align: left;
@@ -586,7 +551,7 @@ body {
     display: none;
   }
   
-  #div11 a span {
+  #right-nav a span {
     height: 100%;
     padding: 0 8% 0 0;
     text-align: left;
@@ -599,11 +564,11 @@ body {
     background-color: #bbb5b5;
   }
   
-  #divsearch {
+  .navsearch {
     margin-left: 1%;
     margin-right: 1%;
     background-color: aliceblue;
-    width: 54%;
+    width: 52%;
     height: 30px;
     align-items: center;
     display: flex;
@@ -613,43 +578,45 @@ body {
     border-radius: 5px;
   }
   
-  #divsearch input:focus {
+  .navsearch input:focus {
     box-shadow: none;
     outline: none;
   }
   
-  #divsearch input {
+  .navsearch input {
     font-size: 2vw ;
     border: 0;
     width: 86%;
     height: 100%;
   }
   
-  #divsearch button {
+  .navsearch button {
     border: 0;
     height: 100%;
     width: 8%;
     border-radius: 0 5% 5% 0;
   }
   
-  #divsearch button.book {
+  .navsearch button.book {
     border-radius: 5% 0 0 5%;
     background-color: #b3b3b3;
   }
   
-  #divsearch button.book:hover {
+  .navsearch button.book:hover {
     background-color: #919191;
   }
   
-  #divsearch button.search {
+  .navsearch button.search {
     width: 6%;
     background-color: rgb(218, 171, 43);
   }
   
-  #divsearch button.search:hover {
+  .navsearch button.search:hover {
     background-color: rgb(160, 120, 9);
   }
-  
+  .navsearchmobile{
+    display: none;
+  }
   
   #logo a div {
     display: inline;
@@ -657,17 +624,17 @@ body {
   
     color: aliceblue;
   }
-  #div22 {
-    position: absolute;
-    background-color: rgb(249, 252, 252);
-    display: none;
-    height: 70%;
-    overflow-y: scroll;
-    width: 54%;
-    top: 6%;
-    right: 30.3%;
-    border: 2px solid rgb(39, 38, 38);
-    z-index: 100;
+  #searchResults
+  {
+     position: absolute;
+     background-color: rgb(246, 248, 248);
+     height: 70%;
+     overflow-y: scroll;
+     width: 42%;
+     top: 7.2%;
+     right: 31.3%;
+     border: 1px solid rgb(216, 215, 215);
+     z-index: 100;
   }
   #list {
     margin: 0;
@@ -827,21 +794,6 @@ body {
     top: 85%;
   }
   
-  #div22 a {
-    text-decoration: none;
-    color: rgb(26, 27, 27);
-    background-color: #bbb5b5;
-  }
-  
-  #div22 a :hover {
-    background-color: #bbb7b7;
-  }
-  
-  #div22 .card {
-    margin-top: 5%;
-    padding-left: 5%;
-    padding-top: 5%;
-  }
 
 
 }
@@ -853,20 +805,13 @@ body {
 
 /* zzzzzzz --- mobile screen -- zzzzzzzzzz */
 
-@media only screen and (max-width: 500px) {
+@media (max-width: 550px) {
       
-header.container11 {
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
+
   .navheader {
     margin: 0;
     background-color: black;
     float: center;
-    flex: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -874,39 +819,15 @@ header.container11 {
     height: 22%;
     width: 100%;
   }
-  
-  header.container11.logo {
-    box-sizing: border-box;
-    display: flex;
-    /* padding: 1% 0 1% 1%; */
-  }
-  #logo {
-    display: inline;
-    float: center;
-    padding: 1% 1% 1% 1%;
-    width: 40%;
-  }
+    #right-nav {
+      display: none;
+    }
   
   
-  #logo > a {
-    box-sizing: content-box;
-    display: flex;
-    align-items: center;
-    /* margin: 5px; */
-    height: 50px;
-    width: 95%;
-  }
-  
-  #logo2 {
-    display: none;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    width: 90%;
-    height: 52px;
-  }
+
+
+
+
   
 #logo3 {
     font-size: 3vw;
@@ -917,68 +838,55 @@ header.container11 {
     padding-top: 1%;
     padding-bottom: 0%;
     margin-bottom: 1px;
+    justify-content: center;
     width: 100%;
     height: 40px;
+
 }
   
 #mobilediv{
+  display: flex;
+  justify-content: flex-end;
     font-size: 3vw;
     color:aliceblue;
     margin-left: 15%;
     display: flex;
     /* justify-content: end; */
     align-items: center;
-    width: 40%;
+    width: 50%;
     height: 70%;
 }
-#mobilediv a{
-    margin-right:5% ;
-    text-decoration: none;
-    color: white;
+#mobilediv {
+    padding-left: 1%;
+   margin-left: 0;
+
 }
 #mobilediv a img {
-  width: 30px;
-  margin-left: 20px;
+  width: 55%;
+  margin-left: 50%;
 }
-  #logo > #loc > div:hover {
-    /* border: 1px solid white; */
-    border-radius: 5%;
-    margin-right: -2%;
-  } */
-  
-  
-  
-  #div11 {
-    display: none;
-    margin: 0;
+.usericon{
+  padding-left: 2%;
+}
+.mobile-signinIcon{
+  padding-left: 10%;
+}
 
-    list-style-type: none;
+#mobilediv a{
+  text-decoration: none;
+  color: white;
+  padding-right: 3%;
+}
 
-    overflow: hidden;
-  }
-  
-  #div11 > ul {
-    padding: 0 0 0 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    display: none;
-  }
-  
-  #div11 li {
-    margin-left: 2%;
-    display: inline;
-    float: left;
-    height: 100%;
-    width:  22%;
-  }
 
   
-  #divsearch {
+
+  
+  .navsearch {
     margin-left: 1%;
     margin-right: 1%;
     background-color: aliceblue;
-    width: 98%;
+    width: 98% !important;
     height: 40px;
     align-items: center;
     display: flex;
@@ -988,48 +896,38 @@ header.container11 {
     border-radius: 5px;
   }
   
-  #divsearch input:focus {
-    box-shadow: none;
-    outline: none;
-  }
-  
-  #divsearch input {
-    font-size: 3vw ;
+
+  .navsearch input {
+    font-size: 3vw  ;
     border: 0;
     width: 86%;
     height: 100%;
   }
   
-  #divsearch button {
-    border: 0;
-    height: 100%;
-    width: 8%;
-    border-radius: 0 5% 5% 0;
-  }
   
-  #divsearch button.book {
-    border-radius: 5% 0 0 5%;
-    background-color: #b3b3b3;
-  }
-  
-  #divsearch button.book:hover {
-    background-color: #919191;
-  }
-  
-  #divsearch button.search {
-    width: 6%;
-    background-color: rgb(218, 171, 43);
-  }
-  
-  #divsearch button.search:hover {
-    background-color: rgb(160, 120, 9);
-  }
-  
-  
+#left-nav {
+  width: 45%;
+}
+#searchResults{
+  position: absolute;
+    background-color: rgb(246, 248, 248);
+    height: 70%;
+    overflow-y: scroll;
+    width: 84.6%;
+    top: 16.2%;
+    right: 6.9%;
+    border: 1px solid rgb(211 211 211);
+    z-index: 100;
+}
+ 
+ 
   #logo a div {
     display: inline;
     float: center;
   
     color: aliceblue;
+  }
+  .locationdiv{
+    display: none;
   }
 }

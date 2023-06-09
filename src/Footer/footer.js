@@ -71,6 +71,7 @@ const Footer = () => {
             <footer id="footer2">
                 <div className="f2section1" style={{ paddingTop: "20px" }}>
                     <table>
+                        <tbody>
                         <tr>
                             <td> <a href="/">
                                 <span> Amazon Music</span>Stream millions
@@ -160,7 +161,7 @@ const Footer = () => {
                                 </a>
                             </td>
                         </tr>
-
+                        </tbody>
                     </table>
 
                 </div>

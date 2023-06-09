@@ -3,9 +3,15 @@ import Footer from './Footer/footer';
 import Header from './Header/Header';
 
 function App() {
+
   return (<>
-      <Header/>
+         <div>
+     
+     <Header/>
       <Footer/>
+
+     </div>
+    
     </>
   )
 }
