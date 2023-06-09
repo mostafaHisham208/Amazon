@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./App.css";
 import Laptops from "./pages/laptops/laptops";
@@ -14,10 +13,12 @@ import Shoes from "./pages/shoes/shoes";
 import Sunglasses from "./pages/sunglasses/sunglasses";
 import Cart from "./pages/cart/cart";
 import NotFound from "./pages/notFound/notFound";
+// import Content from "./components/content";
 
 function App() {
   return (
     <Container fluid>
+      {/* <Content /> */}
       <Routes>
         <Route path="/laptops" element={<Laptops />} />
         <Route path="/mobiles" element={<Mobiles />} />
@@ -33,5 +34,5 @@ function App() {
       </Routes>
     </Container>
   );
-
+}
 export default App;

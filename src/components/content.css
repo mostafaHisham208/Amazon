@@ -4,23 +4,18 @@
 }
 .HomePage {
   background-color: rgb(220, 220, 220);
-  /* justify-content: center; */
 }
 #carouselExample {
-  /* position: relative; */
   width: 100%;
   cursor: pointer;
 }
 .Categories {
-  /* position: absolute; */
   width: 100%;
   top: 45%;
   display: flex;
   justify-content: space-between;
-  /* gap: 1%; */
 }
 .Categories-cards {
-  /* width: 23% !important; */
   margin: 0;
   padding: 15px !important;
   background-color: white;
@@ -35,7 +30,6 @@
   width: 100%;
   cursor: pointer;
   display: block;
-  /* margin: 0.5% auto; */
 }
 .Categories-Link {
   color: rgb(65, 117, 145);
@@ -54,11 +48,6 @@
   margin: "20px";
 }
 .Category_Items_Carousel {
-  /* height: auto;
-  width: 100%;
-  margin-left: 10px;
-  margin-top: 25px;
-  padding: 0; */
   background-color: white;
 }
 .Category_Items_Title {
