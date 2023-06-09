@@ -1,3 +1,4 @@
+
 import React from "react";
 import "./App.css";
 import Laptops from "./pages/laptops/laptops";
@@ -32,6 +33,5 @@ function App() {
       </Routes>
     </Container>
   );
-}
 
 export default App;
