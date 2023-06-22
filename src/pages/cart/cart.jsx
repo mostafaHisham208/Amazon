@@ -5,7 +5,9 @@ import "./cart.css";
 import { changeCart } from "../../storeByRedux/action/changeCart";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 const Cart = () => {
+   const {t,i18n} =useTranslation()
   let [product, setProduct] = useState([]);
   let allProduct = useSelector((state) => state.cart.cart);
   let [totalPrice, setTotalPrice] = useState(0);
@@ -51,24 +53,24 @@ const Cart = () => {
           {product.length >= 1 ? (
             <div className="px-3 py-4 Shopping-Cart mb-3">
               <div className="d-flex justify-content-between text">
-                <h3>Shopping Cart</h3>
-                <span className=" d-none d-md-block">price</span>
+                <h3>{t('ShoppingCart')}</h3>
+                <span className=" d-none d-md-block">{t('price')}</span>
               </div>
               {product.map((prd) => {
                 return (
                   <div className="row py-2 contant" key={prd.id}>
                     <div className="col-12 col-sm-3 col-md-2 ">
-                      <img src={prd.thumbnail} className="h-100 w-100" />
+                      <img src={prd.thumbnail} alt="" className="h-100 w-100" />
                     </div>
                     <div className="col-12 col-sm-9 col-md-8">
                       <h5 className="m-0   overflow-hidden">
                         {prd.description}
                       </h5>
-                      <span className="stock">Instock</span>
-                      <p className="delivert m-0">Eligible for FREE delivery</p>
+                      <span className="stock">{t('Instock')}</span>
+                      <p className="delivert m-0">{t('EligibleforFREEdelivery')}</p>
                       <div className="d-flex flex-wrap  select-menu">
                         <div className="d-flex  align-items-center ">
-                          <span>Qty:</span>
+                          <span>{t('Qty:')}</span>
                           <Form.Select
                             onChange={(e) => {
                               changeQuantity(e, prd.id);
@@ -94,45 +96,42 @@ const Cart = () => {
                           className="btn"
                           onClick={() => handleDelete(prd.id)}
                         >
-                          Delete
+                         {t('Delete')} 
                         </button>
-                        <button className="btn">save for later</button>
-                        <button className="btn">share</button>
+                        <button className="btn">{t('saveforlater')}</button>
+                        <button className="btn">{t('share')}</button>
                       </div>
                     </div>
                     <div className="col-md-2 ">
-                      <h5 className="text-end fw-bold">EGP {prd.price}.00</h5>
+                      <h5 className="text-end fw-bold">{t('EGP')} {prd.price}.00</h5>
                     </div>
                   </div>
                 );
               })}
               <h5 className="text-start text-md-end">
-                Subtotal ({totalItem} items):
-                <span className="fw-bold">EGP {totalPrice}.00</span>{" "}
+              {t('Subtotal')}  ({totalItem} {t('items')}):
+                <span className="fw-bold">{t('EGP')} {totalPrice}.00</span>{" "}
               </h5>
             </div>
           ) : (
             <div className="empty p-3 mb-3">
               <h3 className="text-center text-md-start pb-3">
-                Your Amazon Cart is empty.
+              {t('YourAmazonCartisempty.')} 
               </h3>
-              <p className="text-danger text-center py-3">Shoping Now</p>
+              <p className="text-danger text-center py-3">{t('ShopingNow')}</p>
               <h5 className="text-center text-md-end">
-                Subtotal (0 items):
-                <span className="fw-bold">EGP 0.00</span>{" "}
+              {t('Subtotal')}  (0 {t('items')}):
+                <span className="fw-bold">{t('EGP')} 0.00</span>{" "}
               </h5>
             </div>
           )}{" "}
           <div className="box mb-2"></div>
           <div className="text my-3">
             <p>
-              The price and availability of items at amazon.eg are subject to
-              change. The Cart is a temporary place to store a list of your
-              items and reflects each item's most recent price.
+            {t('Thepriceandavailability')}  
             </p>
             <p>
-              Do you have a gift card or promotional code? We'll ask you to
-              enter your claim code when it's time to pay.
+            {t('Doyouhaveagift')}  
             </p>
           </div>
         </div>
@@ -142,21 +141,19 @@ const Cart = () => {
               <div className="main-color">
                 <IoCheckmarkCircleSharp />
                 <span>
-                  Your order qualifies for FREE Shipping Choose this option at
-                  checkout. See details
+                {t('Yourorderqualifies')}  
                 </span>
               </div>
               <h5 className="">
-                Subtotal ({totalItem} items):
-                <span className=""> EGP {totalPrice}.00</span>{" "}
+              {t('Subtotal')} ({totalItem}{t('items')} ):
+                <span className="">{t('EGP')}  {totalPrice}.00</span>{" "}
               </h5>
-              <button className="tobuy w-100">Proceed to Buy</button>
+              <button className="tobuy w-100">{t('ProceedtoBuy')}</button>
             </div>
           )}
           <div className="best-sales  p-3 d-none d-lg-block">
             <h5>
-              Frequently bought with Samsung Galaxy A04e Dual SIM - 3GB RAM,
-              32GB Stora...
+            {t('Frequentlybought')}  
             </h5>
             <div className="row contant">
               <div className="col-4 p-0">
@@ -170,7 +167,7 @@ const Cart = () => {
               </div>
               <div className="col-8 p-0">
                 <p className="main-color fw-bold">
-                  Samsung Galaxy A04e Dual SIM Smartphone
+                {t('SamsungGalaxy')} 
                 </p>
                 <div className="rate">
                   <div className="iconstar">
@@ -181,8 +178,8 @@ const Cart = () => {
                     <span className="rate-number">8</span>
                   </div>
                 </div>
-                <p className="text-danger fw-bold">EGP 3,699.00</p>
-                <button className="btn-add-cart btn">Add to Cart</button>
+                <p className="text-danger fw-bold">{t('EGP3,699.00')}</p>
+                <button className="btn-add-cart btn">{t('AddtoCart')}</button>
               </div>
             </div>
             <div className="row contant mt-2">
@@ -197,8 +194,7 @@ const Cart = () => {
               </div>
               <div className="col-8 p-0">
                 <p className="main-color fw-bold">
-                  G2000 Gaming Headset, Surround Stereo Gaming Headphones with
-                  Noise Cancelling Mic,
+                {t('G2000GamingHeadset')} 
                 </p>
                 <div className="rate">
                   <div className="iconstar">
@@ -209,8 +205,8 @@ const Cart = () => {
                     <span className="rate-number">8</span>
                   </div>
                 </div>
-                <p className="text-danger fw-bold">EGP 1,299.00</p>
-                <button className="btn-add-cart btn">Add to Cart</button>
+                <p className="text-danger fw-bold">{t('EGP1,299.00')}</p>
+                <button className="btn-add-cart btn">{t('AddtoCart')}</button>
               </div>
             </div>
             <div className="row contant mt-2">
@@ -225,7 +221,7 @@ const Cart = () => {
               </div>
               <div className="col-8 p-0">
                 <p className="main-color fw-bold">
-                  Nokia C10 Android Smartphone, Dual Sim, 2GB RAM, 32GB Memory
+                {t('NokiaC10')} 
                 </p>
                 <div className="rate">
                   <div className="iconstar">
@@ -236,8 +232,8 @@ const Cart = () => {
                     <span className="rate-number">8</span>
                   </div>
                 </div>
-                <p className="text-danger fw-bold">EGP 1,299.00</p>
-                <button className="btn-add-cart btn">Add to Cart</button>
+                <p className="text-danger fw-bold">{t('EGP1,299.00')}</p>
+                <button className="btn-add-cart btn">{t('AddtoCart')}</button>
               </div>
             </div>
           </div>
