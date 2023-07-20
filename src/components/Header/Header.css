@@ -3,19 +3,16 @@
 body {
   font-family: "Amazon Ember", sans-serif;
 }
-@media (min-width: 900px) and (max-width: 1300px) {
-  .cartItemNum {
-    /* left: 20% !important; */
-  }
-}
+
 
 .navheader {
   background-color: black;
   display: flex;
 
   align-items: center;
+  height: 4.5vw;
 
-  height: 65px;
+  /* height: 65px; */
 }
 
 .headertextloc {
@@ -54,8 +51,8 @@ body {
   display: flex;
   position: absolute;
   text-align: center;
-  /* left: 24%; */
-  /* top: 1%; */
+  left: 35%; 
+   top: 1%;
   font-weight: bold;
   color: #f08804;
   align-self:first  baseline;
@@ -64,32 +61,35 @@ body {
 
 #left-nav ul{
   width: 100%;
+  height: 3.5vw;
   display: flex;
   margin: 0;
   padding: 0;
 }
 
 #left-nav li{
-  height: 110%;
+  height: 100%;
   margin-left: 2%;
   margin-right: 2%;
-
+align-items: center;
   width: 45%;
   list-style-type: none;
+  border: 1px solid black;
+
   
 }
 #left-nav li a {
-  /* padding: 1% 7% 4% 7%; */ 
-  display: flex;
-  justify-content: center;
-  height: 90%;
-  text-decoration: none;
-  color: white;
-  text-align: center;
-  flex-wrap: wrap;
-  flex-direction: row-reverse;
-  align-items: center;
-  align-content: center;
+      /* padding: 1% 7% 4% 7%; */
+      display: flex;
+      justify-content: center;
+      height: 99%;
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      flex-wrap: wrap;
+      flex-direction: row-reverse;
+      align-items: center;
+      align-content: center;
 }
 
 
@@ -127,7 +127,7 @@ body {
 
   overflow: hidden;
 
-  height: 50px;
+  height: 3.5vw;
 
   width: 35%;
 
@@ -156,6 +156,8 @@ body {
   height: 100%;
 
   width: 23%;
+  border: 1px solid black;
+
 }
 
 .langarrow {
@@ -163,7 +165,8 @@ body {
 }
 
 #right-nav li a {
-  /* padding: 1% 7% 4% 7%; */ 
+  padding: 1% 7% 2% 5%;
+  line-height: 100%;
   display: flex;
   justify-content: center;
   height: 95%;
@@ -232,8 +235,8 @@ button:hover {
   background-color: aliceblue;
 
   width: 60%;
-
-  height: 40px;
+  height: 3vw;
+  /* height: 40px; */
 
   align-items: center;
 
@@ -358,7 +361,7 @@ button:hover {
 
   z-index: 90;
 
-  transition: 1s;
+  transition: 1.5s;
 
   display: none;
 }
@@ -409,18 +412,18 @@ button:hover {
   /* display: none; */
 
   width: 39%;
-
-  top: 7.5%;
-
-  left: 57%;
+  left: 58vw;
+  top: 3.8vw;
 
   border-radius: 5px;
 
   padding-bottom: 5%;
 
   z-index: 100;
+  transition-property: display;
+  transition-timing-function:ease   ;
+  transition-duration: 2s;  
 
-  transition: 1s;
 }
 
 #listofsign a {
@@ -458,39 +461,30 @@ button:hover {
 #div-sign-arrow {
   position: absolute;
 
-  left: 82.7%;
+  left: 82.7vw;
 
-  top: 6.7%;
+  top: 1vw;
   z-index: 100;
 }
 
 #langArrow {
   position: absolute;
 
-  left: 40%;
+  left: 72.8vw;
+  top: 2.9vw;
 
-  top: 9.7%;
-
-  z-index: 15;
+  z-index: 100;
 }
 
 #div-sign-arrow::before {
   position: absolute;
-
   content: "";
-
   width: 0;
-
   height: 0;
-
-  border: 8px solid;
-
+  border: 0.6vw solid;
   border-color: transparent transparent rgb(241 237 237) transparent;
-
-  left: 80.7%;
-
-  top: 50%;
-
+  left: -0.2vw;
+  top: 1.9vw;
   z-index: 15;
 }
 
@@ -517,7 +511,6 @@ button:hover {
 
   z-index: 100;
 
-  transition: 1s;
 }
 
 #divlangitem:hover {
@@ -548,11 +541,10 @@ button:hover {
 #spanlang {
   position: absolute;
 
-  left: 73.45%;
+  left: 72.5vw;
+  top: 2.7vw;
 
-  top: 6.5%;
-
-  z-index: 15;
+  z-index: 100;
 }
 
 #spanlang::before {
@@ -583,20 +575,13 @@ button:hover {
 
 #spanarrow::before {
   position: absolute;
-
   content: "";
-
   width: 0;
-
   height: 0;
-
-  border: 4px solid;
-
+  border: 0.3vw solid;
   border-color: white transparent transparent transparent;
-
-  right: -45%;
-
-  top: 67%;
+  right: -0.8vw;
+  top: 1.18vw;
 }
 
 #signarrow {
@@ -605,21 +590,13 @@ button:hover {
 
 #signarrow::before {
   position: absolute;
-
   content: "";
-
   width: 0;
-
   height: 0;
-
-  border: 4px solid;
-
+  border: 0.3vw solid;
   border-color: white transparent transparent transparent;
-
-  right: -3%;
-
-  top: 85%;
-
+  right: -0.7vw;
+  top: 0.8vw;
   z-index: 15;
 }
 
@@ -633,9 +610,9 @@ button:hover {
   .cartItemNum {
     position: absolute;
 
-    /* left: 19px;
+    left: 50%;
 
-    top: -6px; */
+    top: 1%;
 
     font-weight: bold;
 
@@ -664,7 +641,13 @@ button:hover {
   .amazonlogo{
   width: 100%;
   }
-
+  .navCartImage {
+    position: relative;
+  
+    width: 60%;
+  
+    /* padding: 4% 0 0 0; */
+  }
 
   #divlangitem {
     position: absolute;
@@ -673,9 +656,9 @@ button:hover {
 
     width: 15%;
 
-    top: 8.7%;
+    top: 8.7vw;
 
-    left: 66%;
+    left: 66vw;
 
     padding-top: 5px;
 
@@ -697,7 +680,7 @@ button:hover {
 
     overflow: hidden;
 
-    height: 40px;
+    height: 4.5vw;
 
     width: 35%;
   }
@@ -1117,7 +1100,9 @@ button:hover {
 
     width: 100%;
   }
-
+  #left-nav ul{
+    height: 8.5vw;
+  }
   #right-nav {
     display: none;
   }

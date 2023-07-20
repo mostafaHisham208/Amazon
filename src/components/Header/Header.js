@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import logo from "../../assets/images header/Amazon-Emblem33.jpg";
+import logo from "../../assets/images header/amazon-logo-editorial-free-vector.jpg";
 
 import location from "../../assets/images header/location3.png";
 import location2 from "../../assets/images header/location.png";
@@ -21,6 +21,7 @@ import cartImg2 from "../../assets/images header/cart.png";
 import searchImg from "../../assets/images header/search.png";
 import { useTranslation } from 'react-i18next';
 import { langContext } from "../../context/lang";
+import { dir } from "i18next";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -29,7 +30,7 @@ export default function Header() {
   let allProduct = useSelector((state) => state.cart.cart);
 
   var {lang,setlang}=   useContext(langContext)
-
+   
   // console.log(allProduct.length);
 
   const [signInisShown, setsignInIsShown] = useState(false);
@@ -43,15 +44,19 @@ export default function Header() {
   const [resultSearch, setResultSearch] = useState([]);
 
 
-  function handelsearchshow() {
+  async function handelsearchshow() {
+    await delay(500);
     setSearchIsShown(!searchIsShown);
   }
-
-  function handelsigninshow() {
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+   function  handelsigninshow()  {
     setsignInIsShown(!signInisShown);
   }
 
-  function handellangshow() {
+   function handellangshow() {
+    
     setlangisShown(!langisShown);
   }
 
@@ -127,17 +132,18 @@ export default function Header() {
   }
 
  const[sta,setsta]= useState({
-    xlang: 70,
-    ylang: 9,
-    xlangarrow:70,
-    ylangarrow:8,
-    xsign:57,
-    ysign:9,
-    xsignarrow:57,
-    ysignarrow:2,
+    xlang: 67,
+    ylang: 3.8,
+    xlangarrow:72.7,
+    ylangarrow:2.9,
+    xsign:58,
+    ysign:3.8,
+    xsignarrow:82.3,
+    ysignarrow:0.9,
     xsearch:22.6,
-    ysearch:8,
-    cartdirection:"row"
+    ysearch:7,
+    cartdirection:"row",
+     langdir:'rtl' 
 
 });
 
@@ -147,10 +153,12 @@ const movelangAR = () => {
         {
             xlang: 20,
             xsign:10,
-            xlangarrow:20,
-            xsignarrow:50,
+            xlangarrow:28.4,
+            xsignarrow:23.2,
             xsearch:31.15,
-            cartdirection:"row-reverse"
+            cartdirection:"row-reverse",
+            langdir:'ltr'
+            
         });
 };
 const resttoEN = () => {
@@ -158,8 +166,8 @@ const resttoEN = () => {
       {
           xlang: 67,
           xsign:52,
-          xlangarrow:70,
-          xsignarrow:57,
+          xlangarrow:72.7,
+          xsignarrow:82.3,
           xsearch:22.6,
           cartdirection:"row"
 
@@ -175,18 +183,18 @@ const resttoEN = () => {
           <div id="left-nav">
             <ul>
               <li>
-            <a href="/" className="p-0">
+            <Link to="/"  className="p-0">
               <div >
                 <img src={logo} alt="logo" 
                  className="amazonlogo col-12"
                  />
                  </div>
-              </a>
+              </Link>
               </li>
               <li  style={{width:"40%"}} className="locationdiv" 
                >
-              <a href="/">
-                <div className=" d-flex  flex-norap " >
+              <Link to="/">
+                <div className=" d-flex  flex-norap w-100" >
                   <div
                     className="col-4 p-0 d-flex align-items-end"
                  
@@ -206,7 +214,7 @@ const resttoEN = () => {
                     <div className="headertextloc2 m-0 p-0  ">{t('Egypt')}</div>
                   </div>
                 </div>
-              </a>
+                </Link>
               </li>
               </ul>
         
@@ -227,10 +235,11 @@ const resttoEN = () => {
           <div className="navsearch">
             <button className="book">{t('All')} </button>
 
-            <input dir="ltr"
-              id="searchInput"
+            <input 
+           dir={!sta.langdir}        
+           id="searchInput"
               type="search"
-              style={{ paddingLeft: "2%" }}
+              style={{ paddingLeft: "2%" ,paddingRight:"2%" }}
               onChange={handlesearch}
               value={query}
               name="search"
@@ -258,7 +267,7 @@ const resttoEN = () => {
                   {" "}
                   <img
                     src={location2}
-                    width="60%"
+                    width="30%"
                     alt="logo"
                     style={{ verticalAlign: "inherit" }}
                   />
@@ -273,7 +282,7 @@ const resttoEN = () => {
             <ul>
             <li className="position-relative me-1">
                 <Link to="/cart" className="d-flex" style={{flexDirection:`${sta.cartdirection}`}}>
-                  <img src={cartImg} alt="" className="navCartImage" />
+                  <img src={cartImg} alt="" className="navCartImage w-50" />
 
                   <span style={{  fontSize: "1.1vw" }}>
                     {t('cart')}
@@ -283,31 +292,31 @@ const resttoEN = () => {
                 </Link>
               </li>
               <li>
-                <a href="/">
+                <Link to='/'>
                   <div>{t('Returns')} {t('Orders')}</div>
-                </a>
+                </Link>
               </li>
               <li
-                style={{ width: "30%" }}
+                style={{ width: "30%"  }}
                 onMouseEnter={() => {
                   setsignInIsShown(true);
                 }}
                 onMouseLeave={handelsigninshow}
               >
-                <a href="/" id="signinarrow">
+                <Link to="./sign" id="signinarrow">
                   <div>{t('sign')}</div>
 
                   <span id="signarrow">{t('Account')}</span>
-                </a>
+                  </Link>
               </li>
               <li
-                style={{ width: "15%" }}
+                style={{ width: "17%",marginLeft:0 }}
                 onMouseEnter={() => {
                   setlangisShown(true);
                 }}
                 onMouseLeave={handellangshow}
               >
-                <a className="langarrow" href="/" style={{ alignItems: "end",flexDirection:`${sta.cartdirection}`,alignContent: "stretch"}} >
+                <Link to='/'  className="langarrow"  style={{paddingTop: '13%',paddingRight:"17%"  ,alignItems: 'center',flexDirection:`${sta.cartdirection}`,alignContent: "stretch"}} >
                   <img src={egypt} alt="" />
 
                   <div>
@@ -315,7 +324,7 @@ const resttoEN = () => {
                       {t('EN')}
                     </span>
                   </div>
-                </a>
+                </Link>
               </li>
 
            
@@ -334,18 +343,18 @@ const resttoEN = () => {
           className="overlay"
           style={{ display: langisShown ? "block" : "none" }}
         />
-        <span
+        <span 
           id="spanlang"
           style={{display: langisShown ? "block" : "none",
-          position:"absolute", left: `${sta.xlangarrow}%`,
-          top: `${sta.ylangarrow}%`}}
+          position:"absolute", left: `${sta.xlangarrow}vw`,
+          top: `${sta.ylangarrow}vw`}}
           onMouseEnter={() => setlangisShown(true)}
           onMouseLeave={handellangshow}
         ></span>
         <div 
           style={{ display: langisShown ? "block" : "none" ,
-          position:"absolute", left: `${sta.xlang}%`,
-          top: `${sta.ylang}%`
+          position:"absolute", left: `${sta.xlang}vw`,
+          top: `${sta.ylang}vw`
         }}
           id="divlangitem"
           onMouseEnter={() => setlangisShown(true)}
@@ -392,7 +401,7 @@ const resttoEN = () => {
           <hr />
 
           <div>
-            {t('Changecurrency')} <a href="/">{t('Learn')}</a>
+            {t('Changecurrency')} <a href="/" >{t('Learn')}</a>
           </div>
 
           {/* <div>$ - USD - US Dollar</div> */}
@@ -404,21 +413,22 @@ const resttoEN = () => {
           className="overlay"
           style={{ display: signInisShown ? "block" : "none" }}
         />
-        <span
+        <span 
           id="div-sign-arrow"
           style={{  display: signInisShown ? "block" : "none",
-          position:"absolute", left: `${sta.xsignarrow}%`,
-          top: `${sta.ysignarrow}%`
+          position:"absolute", left: `${sta.xsignarrow}vw`,
+          top: `${sta.ysignarrow}vw`
         }}
           onMouseEnter={() => setsignInIsShown(true)}
           onMouseLeave={handelsigninshow}
         ></span>{" "}
         <div 
           style={{ display: signInisShown ? "block" : "none",
-          // style={{ display: "block" ,
+          transitionProperty: 'height',
+          transition:'1s'   ,       // style={{ display: "block" ,
 
-          position:"absolute", left: `${sta.xsign}%`,
-          top: `${sta.ysign}%`
+          position:"absolute", left: `${sta.xsign}vw`,
+          top: `${sta.ysign}vw`
            }}
           id="div-sign-tem"
           onMouseEnter={() => setsignInIsShown(true)}
@@ -525,7 +535,8 @@ const resttoEN = () => {
           onClick={() => setSearchIsShown(false)}
         />
 
-        <div
+        <div 
+          dir={!sta.langdir}
           style={{ display: searchIsShown ? "block" : "none" ,
           position:"absolute", left: `${sta.xsearch}%`,
           top: `${sta.ysearch}%`}}

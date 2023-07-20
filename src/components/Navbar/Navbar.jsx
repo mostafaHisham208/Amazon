@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import imgNav from "../../assets/images/XCM_Manual_1550677_5471696_400x39_2X._CB592483028_.jpg";
 import flagImg from "../../assets/images/egypt.png";
@@ -10,29 +10,40 @@ export default function Navbar() {
 
   const { t } = useTranslation();
   const[sta,setsta]= useState({
-    xall:0,
-    yall:-25,
-  })
+    xall:-28,
+    yall:-28,
+    xmark:99,
+    ymark:1
 
+  })
+ 
   const handleall=()=>{
     if(lang=='en'){
       setsta({
+        yall:-28,
         xall:0,
-        yall:-25
+        xmark:99,
 
-      })    }
+      })
+      
+    }
     else{
       setsta({
-        xall:80,
-        yall:110
-      })    }
+        xall:76,
+        yall:110,
+        ymark:-8  
+          })  
+    }
   }
-
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
   const [menu, setMenu] = useState(false);
 
-  function handelMenu() {
-    handleall()
-    setMenu(!menu);
+ async function handelMenu() {
+     handleall()
+   await delay(500);
+     setMenu(!menu);
 
   }
   return (
@@ -193,11 +204,13 @@ export default function Navbar() {
       <div>
         <div
           className="layout"
-          style={{ display: menu ? "block" : "none" }}
+          style={{ display: menu ? "block" : "none"  }}
           onClick={() => setMenu(false)}
         />
-        <div className="menu" style={{ left: menu ?   `${sta.xall}%` : `${sta.yall}%` }}>
-          <span className="x-mark" onClick={() => setMenu(false)}>
+        <div className="menu" style={{ left: menu ? `${sta.xall}%` : `${sta.yall}%` ,transition:menu ?'1s':'0.0001s'}}>
+          <span className="x-mark" 
+          style={{display:menu?'block':'none', left: menu ? `${sta.xmark}%` : `${sta.ymark}%`}}
+           onClick={() => setMenu(false)}>
             <i
               className="fa-solid fa-xmark fa-2xl"
               style={{ color: "white" }}
