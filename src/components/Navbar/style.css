@@ -79,8 +79,11 @@
   }
   .navBar .links {
     flex-wrap: nowrap;
+    margin: 0!important;
   }
-
+  .navBar .links .all {
+    display: none;
+  }
 }
 .navBar .mobile-screen .show-icons {
   display: flex;

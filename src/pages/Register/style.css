@@ -13,10 +13,10 @@
 }
 
 .register #amazon-icon {
-    width: 190px;
+    width: 135px;
     position: absolute;
     left: 50%;
-    top: -15%;
+    top: -9%;
     transform: translate(-50%);
 }
 .card {
