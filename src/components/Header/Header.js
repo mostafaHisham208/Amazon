@@ -312,11 +312,11 @@ const resttoEN = () => {
               <li
                 style={{ width: "17%",marginLeft:0 }}
                 onMouseEnter={() => {
-                  setlangisShown(true);
+                  setlangisShown(true); 
                 }}
                 onMouseLeave={handellangshow}
               >
-                <Link to='/'  className="langarrow"  style={{paddingTop: '13%',paddingRight:"17%"  ,alignItems: 'center',flexDirection:`${sta.cartdirection}`,alignContent: "stretch"}} >
+                <Link to='/'  className="langarrow"  style={{justifyContent: 'space-evenly',paddingTop: '13%',paddingRight:"17%"  ,alignItems: 'center',flexDirection:`${sta.cartdirection}`,alignContent: "stretch"}} >
                   <img src={egypt} alt="" />
 
                   <div>
