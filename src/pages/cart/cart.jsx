@@ -6,6 +6,8 @@ import { changeCart } from "../../storeByRedux/action/changeCart";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
+import Dropdown from "./Dropdown";
+
 const Cart = () => {
    const {t,i18n} =useTranslation()
   let [product, setProduct] = useState([]);
@@ -80,16 +82,8 @@ const Cart = () => {
                             // style={{ width: "70px" }}
                             aria-label="Default select example"
                           >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
+                            <Dropdown num={prd.stock + prd.order} />
+
                           </Form.Select>
                         </div>
                         <button

@@ -1,3 +1,4 @@
+
 .shop-cart {
   background-color: #eaeded;
 }
@@ -83,4 +84,9 @@
   font-weight: 500;
   margin: 0;
   padding: 0;
+}
+
+.shop-cart .form-select:focus {
+  box-shadow: none !important;
+  border-color: #ddd !important;
 }

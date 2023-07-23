@@ -3,7 +3,7 @@ const INSTIAL_STATE = {
     ? JSON.parse(localStorage.getItem("cart"))
     : [],
 };
-console.log(INSTIAL_STATE);
+// console.log(INSTIAL_STATE);
 export function cartReducer(state = INSTIAL_STATE, action) {
   switch (action.type) {
     case "SET_CART":

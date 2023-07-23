@@ -3,16 +3,19 @@
 body {
   font-family: "Amazon Ember", sans-serif;
 }
-
+@media (min-width: 900px) and (max-width: 1300px) {
+  .cartItemNum {
+    left: 16px !important;
+  }
+}
 
 .navheader {
   background-color: black;
   display: flex;
 
   align-items: center;
-  height: 4.5vw;
 
-  /* height: 65px; */
+  height: 65px;
 }
 
 .headertextloc {
@@ -32,7 +35,7 @@ body {
 #left-nav {
   display: flex;
 
-  /* padding: 1% 1% 1% 1%; */
+  padding: 1% 1% 1% 1%;
 
   width: 20%;
 
@@ -42,72 +45,70 @@ body {
 .navCartImage {
   position: relative;
 
-  /* width: 40%; */
+  width: 40%;
 
-  /* padding: 4% 0 0 0; */
+  padding: 4% 0 0 0;
 }
 
 .cartItemNum {
-  display: flex;
   position: absolute;
-  text-align: center;
-  left: 35%; 
-   top: 1%;
+
+  left: 24px;
+
+  top: 1px;
+
   font-weight: bold;
+
   color: #f08804;
-  align-self:first  baseline;
 }
 
+/* #left-nav>.locationdiv> a {
 
-#left-nav ul{
-  width: 100%;
-  height: 3.5vw;
+  text-decoration: none;
+
+  color: antiquewhite;
+
+   box-sizing: content-box;
+
+   display: flex;
+
+   align-items: center;
+
+   height: 80%;
+
+   width: 100%;
+
+   padding:0.5% 5% 0.5% 5% ;
+
+} */
+
+#left-nav > div > a {
+  text-decoration: none;
+
+  color: antiquewhite;
+
+  box-sizing: content-box;
+
   display: flex;
-  margin: 0;
-  padding: 0;
-}
 
-#left-nav li{
+  align-items: center;
+
   height: 100%;
-  margin-left: 2%;
-  margin-right: 2%;
-align-items: center;
-  width: 45%;
-  list-style-type: none;
-  border: 1px solid black;
 
-  
-}
-#left-nav li a {
-      /* padding: 1% 7% 4% 7%; */
-      display: flex;
-      justify-content: center;
-      height: 99%;
-      text-decoration: none;
-      color: white;
-      text-align: center;
-      flex-wrap: wrap;
-      flex-direction: row-reverse;
-      align-items: center;
-      align-content: center;
+  width: 90%;
+
+  padding: 0.5% 5% 0.5% 5%;
+
+  margin-left: 3%;
 }
 
-
-#left-nav li:hover {
-  border: 1px solid white;
-
-  border-radius: 2%;
-
-  padding: 0 0 0 0;
-}
-
-/* #left-nav > div > a:hover {
+#left-nav > div > a:hover {
   border: 1px solid white;
 
   border-radius: 2%;
 
   color: antiquewhite;
-} */
+}
 
 #logo3 {
   display: none;
@@ -119,7 +120,6 @@ align-items: center;
 
 #right-nav {
   display: flex;
-  flex-direction: row-reverse;
 
   margin: 0;
 
@@ -127,7 +127,7 @@ align-items: center;
 
   overflow: hidden;
 
-  height: 3.5vw;
+  height: 50px;
 
   width: 35%;
 
@@ -135,8 +135,6 @@ align-items: center;
 }
 
 #right-nav > ul {
-  display: flex;
-  flex-direction: row-reverse;
   padding: 0 0 0 0;
 
   margin: 0;
@@ -155,9 +153,7 @@ align-items: center;
 
   height: 100%;
 
-  width: 23%;
-  border: 1px solid black;
-
+  width: 22%;
 }
 
 .langarrow {
@@ -165,18 +161,21 @@ align-items: center;
 }
 
 #right-nav li a {
-  padding: 1% 7% 2% 5%;
-  line-height: 100%;
+  padding: 1% 7% 4% 7%;
+
   display: flex;
-  justify-content: center;
+
+  justify-content: flex-start;
+
   height: 95%;
+
   text-decoration: none;
+
   color: white;
+
   text-align: center;
+
   flex-wrap: wrap;
-  flex-direction: row-reverse;
-  align-items: center;
-  align-content: center;
 }
 
 #right-nav li:hover {
@@ -190,35 +189,35 @@ align-items: center;
 #right-nav a div {
   font-size: 1vw;
 
-  /* height: 49%;
+  height: 49%;
 
-  padding: 3% 0 0 0; */
+  padding: 3% 0 0 0;
 
-  text-align: center;
+  text-align: left;
 }
 
 .langarrow img {
   width: 40%;
 
-  /* height: 50%; */
+  height: 50%;
 }
 
 #right-nav a div > span {
-  /* height: 50%; */
+  height: 50%;
 
-  /* padding: 0 8% 0 0; */
+  padding: 0 8% 0 0;
 
-  text-align: center;
+  text-align: left;
 
   font-size: 1vw;
 }
 
 #right-nav a span {
-  /* height: 50%; */
+  height: 50%;
 
-  /* padding: 0 8% 0 0; */
+  padding: 0 8% 0 0;
 
-  text-align: center;
+  text-align: left;
 
   font-size: 1.1vw;
 }
@@ -228,15 +227,15 @@ button:hover {
 }
 
 .navsearch {
-  margin-left: 1%; 
+  /* margin-left: 1%; */
 
-   margin-right: 1%;
+  /* margin-right: 1%; */
 
   background-color: aliceblue;
 
   width: 60%;
-  height: 3vw;
-  /* height: 40px; */
+
+  height: 40px;
 
   align-items: center;
 
@@ -312,16 +311,15 @@ button:hover {
 #searchResults {
   position: fixed;
 
-  left: 22.9%;
+  left: 22.33%;
 
   top: 8.2%;
 
   height: 70%;
 
-  width: 46.3%;
+  width: 47%;
 
   background-color: white;
-  border: 1px solid #919191;
 
   z-index: 100;
 
@@ -361,7 +359,7 @@ button:hover {
 
   z-index: 90;
 
-  transition: 1.5s;
+  transition: 1s;
 
   display: none;
 }
@@ -412,18 +410,18 @@ button:hover {
   /* display: none; */
 
   width: 39%;
-  left: 58vw;
-  top: 3.8vw;
+
+  top: 7.5%;
+
+  left: 57%;
 
   border-radius: 5px;
 
   padding-bottom: 5%;
 
   z-index: 100;
-  transition-property: display;
-  transition-timing-function:ease   ;
-  transition-duration: 2s;  
 
+  transition: 1s;
 }
 
 #listofsign a {
@@ -461,30 +459,39 @@ button:hover {
 #div-sign-arrow {
   position: absolute;
 
-  left: 82.7vw;
+  left: 82.7%;
 
-  top: 1vw;
+  top: 6.7%;
   z-index: 100;
 }
 
 #langArrow {
   position: absolute;
 
-  left: 72.8vw;
-  top: 2.9vw;
+  left: 40%;
 
-  z-index: 100;
+  top: 9.7%;
+
+  z-index: 15;
 }
 
 #div-sign-arrow::before {
   position: absolute;
+
   content: "";
+
   width: 0;
+
   height: 0;
-  border: 0.6vw solid;
+
+  border: 8px solid;
+
   border-color: transparent transparent rgb(241 237 237) transparent;
-  left: -0.2vw;
-  top: 1.9vw;
+
+  left: 80.7%;
+
+  top: 50%;
+
   z-index: 15;
 }
 
@@ -504,13 +511,12 @@ button:hover {
   padding-bottom: 15px;
 
   padding-left: 10px;
-  padding-right: 10px;
-
 
   border-radius: 2%;
 
   z-index: 100;
 
+  transition: 1s;
 }
 
 #divlangitem:hover {
@@ -527,9 +533,6 @@ button:hover {
 
 .langselect label {
   padding-left: 10%;
-  padding-right: 5%;
-
-
 }
 
 .langselect:hover {
@@ -541,10 +544,11 @@ button:hover {
 #spanlang {
   position: absolute;
 
-  left: 72.5vw;
-  top: 2.7vw;
+  left: 73.45%;
 
-  z-index: 100;
+  top: 6.5%;
+
+  z-index: 15;
 }
 
 #spanlang::before {
@@ -575,13 +579,20 @@ button:hover {
 
 #spanarrow::before {
   position: absolute;
+
   content: "";
+
   width: 0;
+
   height: 0;
-  border: 0.3vw solid;
+
+  border: 4px solid;
+
   border-color: white transparent transparent transparent;
-  right: -0.8vw;
-  top: 1.18vw;
+
+  right: -45%;
+
+  top: 67%;
 }
 
 #signarrow {
@@ -590,13 +601,21 @@ button:hover {
 
 #signarrow::before {
   position: absolute;
+
   content: "";
+
   width: 0;
+
   height: 0;
-  border: 0.3vw solid;
+
+  border: 4px solid;
+
   border-color: white transparent transparent transparent;
-  right: -0.7vw;
-  top: 0.8vw;
+
+  right: -3%;
+
+  top: 85%;
+
   z-index: 15;
 }
 
@@ -610,9 +629,9 @@ button:hover {
   .cartItemNum {
     position: absolute;
 
-    left: 50%;
+    left: 19px;
 
-    top: 1%;
+    top: -6px;
 
     font-weight: bold;
 
@@ -638,15 +657,27 @@ button:hover {
 
     width: 100%;
   }
-  .amazonlogo{
-  width: 100%;
+
+  #logo {
+    display: inline;
+
+    float: center;
+
+    padding: 1% 1% 1% 1%;
+
+    width: 9%;
   }
-  .navCartImage {
-    position: relative;
-  
-    width: 60%;
-  
-    /* padding: 4% 0 0 0; */
+
+  #logo > a {
+    box-sizing: content-box;
+
+    display: flex;
+
+    align-items: center;
+
+    height: 42px;
+
+    width: 95%;
   }
 
   #divlangitem {
@@ -656,9 +687,9 @@ button:hover {
 
     width: 15%;
 
-    top: 8.7vw;
+    top: 8.7%;
 
-    left: 66vw;
+    left: 66%;
 
     padding-top: 5px;
 
@@ -680,7 +711,7 @@ button:hover {
 
     overflow: hidden;
 
-    height: 4.5vw;
+    height: 40px;
 
     width: 35%;
   }
@@ -690,20 +721,25 @@ button:hover {
   }
 
   #right-nav li a {
-   /* padding: 1% 7% 4% 7%; */
+    padding: 1% 7% 4% 7%;
+
     display: flex;
-    justify-content: center;
+
+    justify-content: flex-start;
+
     height: 80%;
+
     text-decoration: none;
+
     color: white;
+
     text-align: center;
+
     flex-wrap: wrap;
-    align-items: baseline;
-    flex-direction: column-reverse;
   }
 
   #right-nav li a img {
-    /* width: 80%; */
+    width: 80%;
   }
 
   #right-nav li:hover {
@@ -715,19 +751,19 @@ button:hover {
   }
 
   #right-nav a div {
-    font-size: 1.6vw;
+    font-size: 1.8vw;
 
-    /* height: 49%;
+    height: 49%;
 
-    padding: 15% 0 0 0; */
+    padding: 15% 0 0 0;
 
-    text-align: center;
+    text-align: left;
   }
 
   .langarrow img {
     width: 80%;
 
-    /* height: 85; */
+    height: 85;
   }
 
   #right-nav a div > span {
@@ -871,11 +907,11 @@ button:hover {
 
     display: none;
 
-    height: auto;
+    height: 75%;
 
-    width: 41%;
+    width: 56%;
 
-    top: 6%;
+    top: 8%;
 
     left: 42%;
 
@@ -887,11 +923,9 @@ button:hover {
   }
 
   #listofsign a {
-    font-size: 1.5vw;
+    font-size: 2vw;
 
-    padding-left: 0%;
-    padding-right: 0%;
-
+    padding-left: 3%;
 
     text-decoration: none;
 
@@ -907,11 +941,9 @@ button:hover {
   #listofsign h5 {
     font-weight: bold;
 
-    font-size: 2vw;
+    font-size: 2.5vw;
 
     padding-left: 3%;
-    padding-right: 3%;
-
   }
 
   .registerlink {
@@ -920,16 +952,14 @@ button:hover {
 
   .listsearchtext {
     padding-left: 7%;
-    padding-right: 7%;
 
-
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .listsearchtext h6 {
     font-weight: bold;
 
-    font-size: 1.2vw;
+    font-size: 1.8vw;
   }
 
   #div-sign-tem button a:hover {
@@ -973,7 +1003,7 @@ button:hover {
 
     display: none;
 
-    width: 25%;
+    width: 30%;
 
     top: 8%;
 
@@ -1000,7 +1030,6 @@ button:hover {
 
   .langselect label {
     padding-left: 3%;
-    
   }
 
   .langselect:hover {
@@ -1100,9 +1129,7 @@ button:hover {
 
     width: 100%;
   }
-  #left-nav ul{
-    height: 8.5vw;
-  }
+
   #right-nav {
     display: none;
   }

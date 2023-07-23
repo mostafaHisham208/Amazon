@@ -1,30 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Instance from "../../instanceAxios/instance";
 import "./productDetails.css";
 import AddToCard from "./addToCart/addToCard";
 import Loading from "../../components/loading/loading";
-
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/instanceFire";
+import Rate from "../../components/rate/rate";
 const ProductDetails = () => {
   let [product, setproduct] = useState({});
   let [numberImg, setNumberImg] = useState(0);
   let { id } = useParams();
   let [price, setprice] = useState("");
+  const { state } = useLocation();
+
   useEffect(() => {
-    Instance.get(`/${id}`)
-      .then((res) => {
-        // console.log(res.data);
-        setproduct(res.data);
-        let price = res.data.price.toString().split("");
-        price.splice(2, 0, ",");
-        setprice(price.join(""));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (state !== null) {
+      let data = doc(db, state, id);
+      console.log(data);
+      getDoc(data)
+        .then((res) => {
+          console.log(res.data());
+          setproduct(res.data());
+          let price = res.data().price.toString().split("");
+          price.splice(2, 0, ",");
+          setprice(price.join(""));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      Instance.get(`/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          setproduct(res.data);
+          let price = res.data.price.toString().split("");
+          price.splice(2, 0, ",");
+          setprice(price.join(""));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
-  console.log(Object.keys(product).length);
+  // console.log(Object.keys(product).length);
   return (
     <div>
       {Object.keys(product).length < 1 ? (
@@ -65,11 +85,12 @@ const ProductDetails = () => {
               <h3 className="description">{product.description}</h3>
               <p className="brand">Brand: {product.brand}</p>
               <div className="rate">
-                <div className="iconstar">
-                  <i className="fa-solid fa-star "></i>
+                <div className="iconstar d-flex align-items-center">
+                  {/* <i className="fa-solid fa-star "></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i> */}
+                  <Rate rate={product.rating} />
                   <i className="fa-solid fa-chevron-down "></i>
                   <span className="rate-number">{product.rating}</span>
                 </div>

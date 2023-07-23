@@ -106,8 +106,7 @@ const AddToCard = (props) => {
               onChange={(e) => {
                 changeQuantity(e);
               }}
-              className="py-1 ms-1 "
-              style={{ width: "68px" }}
+              className="py-1 ms-1 select-Quantity "
               aria-label="Default select example"
             >
               {dropDown.map((e) => (
