@@ -9,3 +9,6 @@
 .notFound a {
   color: #996633;
 }
+.table-notFound {
+  display: block !important;
+}

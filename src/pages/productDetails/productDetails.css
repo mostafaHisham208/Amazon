@@ -58,6 +58,9 @@
   font-size: 14px;
   line-height: 1.1;
 }
+.details .description {
+  overflow: hidden;
+}
 .details .addtocart {
   border: 1px solid #adadad;
   border-radius: 5px;

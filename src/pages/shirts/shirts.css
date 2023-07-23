@@ -1,7 +1,3 @@
-:root {
-  --mainColor: #317185;
-}
-
 @media (min-width: 768px) {
   .laptop .content-filter {
     border-right: 2px solid #ddd;
@@ -14,7 +10,6 @@
   padding: 10px 0;
   border-radius: 5px;
 }
-
 .laptop .card {
   cursor: pointer;
 }
@@ -25,16 +20,44 @@
 .laptop .card-body .card-text {
   font-weight: 500;
 }
-.laptop .card-body .card-text .text-tomorrow {
-  font-weight: 700;
-}
-.laptop .rate .iconstar .fa-star {
-  color: #fa9e1d;
-}
 .laptop .rate .iconstar .fa-chevron-down {
   color: #adadad;
   font-size: 13px;
 }
 .laptop .rate .iconstar .rate-number {
+  color: var(--mainColor);
+}
+.laptop .accordion-button::after {
+  background-size: 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+.laptop .accordion-filter {
   color: #317185;
+}
+.laptop .accordion-button {
+  background-color: white !important;
+  color: black !important;
+  /* border: 0 1px; */
+}
+.laptop .accordion-item {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0 !important;
+}
+.laptop .sub-filter {
+  border: 1px;
+  background: #fafafa;
+}
+.laptop .accordion-button:focus {
+  z-index: 3;
+  border-color: none !important;
+  outline: 0;
+  box-shadow: none !important;
+}
+.laptop .accordion-over {
+  flex-basis: 70%;
+  text-overflow: ellipsis;
+  overflow: hidden !important;
+  white-space: nowrap !important;
 }

@@ -6,13 +6,17 @@ import "./addToCart.css";
 import { Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { changeCart } from "../../../storeByRedux/action/changeCart";
-
+import Swal from "sweetalert2";
 const AddToCard = (props) => {
   let [product, setProduct] = useState({});
   let [quantity, setQuantity] = useState(1);
   let [listCart, setListCart] = useState([]);
   let cart = useSelector((state) => state.cart.cart);
   let dispatch = useDispatch();
+  let dropDown = [];
+  for (var i = 1; i <= props.product.stock; i++) {
+    dropDown.push(i);
+  }
   let changeQuantity = (e) => {
     setQuantity(parseInt(e.target.value));
   };
@@ -21,41 +25,50 @@ const AddToCard = (props) => {
     setProduct(props.product);
   }, [props.product, cart, listCart]);
   let addToCard = (prd) => {
-    let newListCart = listCart.map((ele) => {
-      if (ele.id === prd.id) {
-        ele.order = ele.order + quantity;
-        ele.stock = ele.stock - quantity;
-        return ele;
-      }
-      return ele;
-    });
-
-    if (listCart.length > 0) {
-      listCart.map((p) =>
-        p.id === prd.id
-          ? dispatch(changeCart([...newListCart]))
-          : dispatch(
-              changeCart([
-                ...listCart,
-                {
-                  ...props.product,
-                  stock: props.product.stock - quantity,
-                  order: quantity,
-                },
-              ])
-            )
-      );
+    const result = cart.some((obj) => obj.id === prd.id);
+    const resultStock = cart.some(
+      (obj) => obj.id === prd.id && obj.stock >= quantity
+    );
+    // console.log(result);
+    // console.log(resultStock);
+    if (result) {
+      resultStock
+        ? dispatch(
+            changeCart([
+              ...cart.map((ele) => {
+                if (ele.id === prd.id) {
+                  ele.order = ele.order + quantity;
+                  ele.stock = ele.stock - quantity;
+                  return ele;
+                }
+                return ele;
+              }),
+            ])
+          )
+        : Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "The quantity is not available",
+          });
     } else {
-      dispatch(
-        changeCart([
-          ...listCart,
-          {
-            ...props.product,
-            stock: props.product.stock - quantity,
-            order: quantity,
-          },
-        ])
-      );
+      if (prd.stock >= quantity) {
+        dispatch(
+          changeCart([
+            ...cart,
+            {
+              ...props.product,
+              stock: props.product.stock - quantity,
+              order: quantity,
+            },
+          ])
+        );
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Available ${prd.state} items in stock`,
+        });
+      }
     }
   };
 
@@ -93,20 +106,14 @@ const AddToCard = (props) => {
               onChange={(e) => {
                 changeQuantity(e);
               }}
-              className="py-1 ms-1 "
-              style={{ width: "68px" }}
+              className="py-1 ms-1 select-Quantity "
               aria-label="Default select example"
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
+              {dropDown.map((e) => (
+                <option key={e} value={e}>
+                  {e}
+                </option>
+              ))}
             </Form.Select>
           </div>
           <div>

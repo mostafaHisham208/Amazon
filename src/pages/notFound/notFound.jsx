@@ -13,7 +13,7 @@ const NotFound = () => {
       <div className=" d-flex justify-content-center text-start">
         <table>
           <tbody>
-            <tr>
+            <tr className="table-notFound">
               <td>
                 <img
                   src="https://m.media-amazon.com/images/G/42/x-locale/common/kailey-kitty._CB466483591_.gif"

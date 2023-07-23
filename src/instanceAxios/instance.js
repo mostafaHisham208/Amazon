@@ -7,8 +7,8 @@ const Instance = axios.create({
 
 Instance.interceptors.request.use(
   (req) => {
-    console.log("request interceptor");
     store.dispatch(changeLoading(true));
+    // console.log("moooooooo");
     return req;
   },
   (err) => {
@@ -18,7 +18,6 @@ Instance.interceptors.request.use(
 
 Instance.interceptors.response.use(
   (res) => {
-    console.log("response interceptor");
     store.dispatch(changeLoading(false));
     return res;
   },

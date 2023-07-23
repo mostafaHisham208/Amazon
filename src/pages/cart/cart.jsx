@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import "./cart.css";
 import { changeCart } from "../../storeByRedux/action/changeCart";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
+import Swal from "sweetalert2";
+import Dropdown from "./Dropdown";
 const Cart = () => {
   let [product, setProduct] = useState([]);
   let allProduct = useSelector((state) => state.cart.cart);
@@ -43,6 +45,7 @@ const Cart = () => {
       setTotalPrice(price);
     }
   }, [handleDelete]);
+
   return (
     <div>
       <div className="row shop-cart p-3 ">
@@ -68,25 +71,36 @@ const Cart = () => {
                       <div className="d-flex flex-wrap  select-menu">
                         <div className="d-flex  align-items-center ">
                           <span>Qty:</span>
+                          {/* <Dropdown
+                            // funcQuantity={changeQuantity(prd.id)}
+                            onChange={(e) => {
+                              changeQuantity(e, prd.id);
+                            }}
+                            value={prd.order}
+                          /> */}
                           <Form.Select
                             onChange={(e) => {
                               changeQuantity(e, prd.id);
                             }}
                             value={prd.order}
-                            className="py-1 mx-1 "
-                            style={{ width: "70px" }}
+                            className="py-1 ms-1 "
                             aria-label="Default select example"
                           >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
+                            <Dropdown num={prd.stock + prd.order} />
+                            {/* <>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">71</option>
+                              <option value="8">18</option>
+                              <option value="9">19</option>
+                              <option value="10" className="fw-900 ">
+                                10+
+                              </option>
+                            </> */}
                           </Form.Select>
                         </div>
                         <button
@@ -117,7 +131,7 @@ const Cart = () => {
               </h3>
               <p className="text-danger text-center py-3">Shoping Now</p>
               <h5 className="text-center text-md-end">
-                Subtotal ({totalItem} items):
+                Subtotal (0 items):
                 <span className="fw-bold">EGP 0.00</span>{" "}
               </h5>
             </div>
@@ -160,7 +174,9 @@ const Cart = () => {
             <div className="row contant">
               <div className="col-4 p-0">
                 <img
-                  src="https://images-eu.ssl-images-amazon.com/images/I/81HjL17oavL._AC_UL200_SR200,200_.jpg"
+                  src={
+                    "https://images-eu.ssl-images-amazon.com/images/I/81HjL17oavL._AC_UL200_SR200,200_.jpg"
+                  }
                   className="w-100 h-100"
                   alt=""
                 />
@@ -185,7 +201,9 @@ const Cart = () => {
             <div className="row contant mt-2">
               <div className="col-4 p-0">
                 <img
-                  src="https://images-eu.ssl-images-amazon.com/images/I/61glUkL9N8L._AC_UL200_SR200,200_.jpg"
+                  src={
+                    "https://images-eu.ssl-images-amazon.com/images/I/61glUkL9N8L._AC_UL200_SR200,200_.jpg"
+                  }
                   className="w-100 h-100"
                   alt=""
                 />
@@ -211,7 +229,9 @@ const Cart = () => {
             <div className="row contant mt-2">
               <div className="col-4 p-0">
                 <img
-                  src="https://images-eu.ssl-images-amazon.com/images/I/81ejU1gSrxL._AC_UL200_SR200,200_.jpg"
+                  src={
+                    "https://images-eu.ssl-images-amazon.com/images/I/81ejU1gSrxL._AC_UL200_SR200,200_.jpg"
+                  }
                   className="w-100 h-100"
                   alt=""
                 />

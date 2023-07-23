@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import imgNav from "../../assets/images/XCM_Manual_1550677_5471696_400x39_2X._CB592483028_.jpg";
 import flagImg from "../../assets/images/egypt.png";
+import { Link } from "react-router-dom";
 export default function Navbar() {
   const [menu, setMenu] = useState(false);
 
@@ -17,33 +18,45 @@ export default function Navbar() {
               <i className="fa-solid fa-bars" /> All
             </li>
             <li>
-              <a href="./index.html">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="./Cart & Pages/electronics.html">Electronics</a>
+              <Link to="/laptops">laptops</Link>
             </li>
             <li>
-              <a href="./Cart & Pages/jewelery.html">Jewelry</a>
+              <Link to="/womens-jewellery">Jewelry</Link>
             </li>
             <li>
-              <a href="./Cart & Pages/man.html">men's clothing</a>
+              <Link to="/sunglasses">sunglasses</Link>
             </li>
             <li>
-              <a href="./Cart & Pages/women.html">women's clothing</a>
+              <Link to="/mens-shoes">shoes</Link>
+            </li>
+            <li>
+              <Link to="/mens-shirts">shirts</Link>
+            </li>
+            <li>
+              <Link to="/womens-dresses">dresses</Link>
+            </li>
+            <li>
+              <Link to="/lighting">lighting</Link>
+            </li>
+            <li>
+              <Link to="/smartphones">mobiles</Link>
             </li>
           </ul>
           <img className="img" src={imgNav} />
           <div className="mobile-screen">
             <div className="show-icons">
-              <a href="./index.html">
+              <Link href="./index.html">
                 <i className="fa-solid fa-house" />
-              </a>
-              <a href="./Sign/Sign.html">
+              </Link>
+              <Link href="./Sign/Sign.html">
                 <i className="fa-solid fa-user" />
-              </a>
-              <a href="./Cart & Pages/card.html">
+              </Link>
+              <Link href="./Cart & Pages/card.html">
                 <i className="fa-solid fa-cart-shopping" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -62,9 +75,9 @@ export default function Navbar() {
                   <i className="fa-solid fa-circle-user" />{" "}
                 </span>
                 Hello,{" "}
-                <a href="./Sign/Sign.html" id="signUser">
+                <Link href="./Sign/Sign.html" id="signUser">
                   sign in
-                </a>
+                </Link>
               </h3>
             </div>
           </div>
@@ -77,17 +90,18 @@ export default function Navbar() {
           <div className="digital">
             <h4>Digital Content And Devices</h4>
             <div
-              style={{
-                display: "flex",
-                "-webkit-box-pack": "space-between",
-                "-webkit-justify-content": "space-between",
-                "-ms-flex-pack": "space-between",
-                "justify-content": "space-between",
-                "-webkit-align-items": "center",
-                "-webkit-box-align": "center",
-                "-ms-flex-align": "center",
-                "align-items": "center",
-              }}
+              className="d-flex align-items-center justify-content-between"
+              // style={{
+              //   display: "flex",
+              //   "-webkit-box-pack": "space-between",
+              //   "-webkit-justify-content": "space-between",
+              //   "-ms-flex-pack": "space-between",
+              //   "justify-content": "space-between",
+              //   "-webkit-align-items": "center",
+              //   "-webkit-box-align": "center",
+              //   "-ms-flex-align": "center",
+              //   "align-items": "center",
+              // }}
             >
               <span>Amazon Kindle E-readers</span>
               <i
@@ -98,60 +112,65 @@ export default function Navbar() {
           </div>
           <div className="shop">
             <h4>Shop By Category</h4>
-            <a href="./Cart & Pages/electronics.html">
+            <Link href="./Cart & Pages/electronics.html">
               <span>Electronics</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
-            <a href="./Cart & Pages/jewelery.html">
+            </Link>
+            <Link href="./Cart & Pages/jewelery.html">
               <span>Jewelry</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
-            <a href="./Cart & Pages/man.html">
+            </Link>
+            <Link href="./Cart & Pages/man.html">
               <span>Men's clothing</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
-            <a href="./Cart & Pages/women.html">
+            </Link>
+            <Link href="./Cart & Pages/women.html">
               <span>Women's clothing</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
+            </Link>
           </div>
           <div className="help">
             <h4>Help &amp; Settings</h4>
-            <a href="./Sign/Sign.html">Your Account</a>
+            <Link href="./Sign/Sign.html">Your Account</Link>
             <div>
               <i className="fa-solid fa-earth-americas" /> English
             </div>
             <div
-              style={{
-                display: "flex",
-                "-webkit-align-items": "center",
-                "-webkit-box-align": "center",
-                "-ms-flex-align": "center",
-                "align-items": "center",
-              }}
+              className="d-flex align-items-center "
+              // style={{
+              //   display: "flex",
+              //   "-webkit-align-items": "center",
+              //   "-webkit-box-align": "center",
+              //   "-ms-flex-align": "center",
+              //   "align-items": "center",
+              // }}
             >
               <img src={flagImg} style={{ width: "20px" }} />
-              <span style={{ "margin-left": "5px" }}>Egypt</span>
+              <span style={{ marginLeft: "5px" }}>Egypt</span>
             </div>
           </div>
         </div>
       </div>
       {/* start overlay */}
       <div>
-        <div className="layout" style={{display:menu?"block":"none"}} onClick={() => setMenu(false)}/>
-        <div className="menu" style={{left:menu?"0":"-400px"}}>
+        <div
+          className="layout"
+          style={{ display: menu ? "block" : "none" }}
+          onClick={() => setMenu(false)}
+        />
+        <div className="menu" style={{ left: menu ? "0" : "-400px" }}>
           <span className="x-mark" onClick={() => setMenu(false)}>
             <i
               className="fa-solid fa-xmark fa-2xl"
@@ -165,9 +184,9 @@ export default function Navbar() {
                   <i className="fa-solid fa-circle-user" />{" "}
                 </span>
                 Hello,{" "}
-                <a href="./Sign/Sign.html" id="signUser">
+                <Link href="./Sign/Sign.html" id="signUser">
                   sign in
-                </a>
+                </Link>
               </h3>
             </div>
           </div>
@@ -180,17 +199,18 @@ export default function Navbar() {
           <div className="digital">
             <h4>Digital Content And Devices</h4>
             <div
-              style={{
-                display: "flex",
-                "-webkit-box-pack": "space-between",
-                "-webkit-justify-content": "space-between",
-                "-ms-flex-pack": "space-between",
-                "justify-content": "space-between",
-                "-webkit-align-items": "center",
-                "-webkit-box-align": "center",
-                "-ms-flex-align": "center",
-                "align-items": "center",
-              }}
+              className="d-flex align-items-center justify-content-between"
+              // style={{
+              //   display: "flex",
+              //   "-webkit-box-pack": "space-between",
+              //   "-webkit-justify-content": "space-between",
+              //   "-ms-flex-pack": "space-between",
+              //   "justify-content": "space-between",
+              //   "-webkit-align-items": "center",
+              //   "-webkit-box-align": "center",
+              //   "-ms-flex-align": "center",
+              //   "align-items": "center",
+              // }}
             >
               <span>Amazon Kindle E-readers</span>
               <i
@@ -201,52 +221,53 @@ export default function Navbar() {
           </div>
           <div className="shop">
             <h4>Shop By Category</h4>
-            <a href="./Cart & Pages/electronics.html">
+            <Link href="./Cart & Pages/electronics.html">
               <span>Electronics</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
-            <a href="./Cart & Pages/jewelery.html">
+            </Link>
+            <Link href="./Cart & Pages/jewelery.html">
               <span>Jewelry</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
-            <a href="./Cart & Pages/man.html">
+            </Link>
+            <Link href="./Cart & Pages/man.html">
               <span>Men's clothing</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
-            <a href="./Cart & Pages/women.html">
+            </Link>
+            <Link href="./Cart & Pages/women.html">
               <span>Women's clothing</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
-            </a>
+            </Link>
           </div>
           <div className="help">
             <h4>Help &amp; Settings</h4>
-            <a href="./Sign/Sign.html">Your Account</a>
+            <Link href="./Sign/Sign.html">Your Account</Link>
             <div>
               <i className="fa-solid fa-earth-americas" /> English
             </div>
             <div
-              style={{
-                display: "flex",
-                "-webkit-align-items": "center",
-                "-webkit-box-align": "center",
-                "-ms-flex-align": "center",
-                "align-items": "center",
-              }}
+              className="d-flex align-items-center justify-content-between"
+              // style={{
+              //   display: "flex",
+              //   "-webkit-align-items": "center",
+              //   "-webkit-box-align": "center",
+              //   "-ms-flex-align": "center",
+              //   "align-items": "center",
+              // }}
             >
               <img src={flagImg} style={{ width: "20px" }} />
-              <span style={{ "margin-left": "5px" }}>Egypt</span>
+              <span style={{ marginLeft: "5px" }}>Egypt</span>
             </div>
           </div>
         </div>

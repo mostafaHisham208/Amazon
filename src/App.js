@@ -11,31 +11,37 @@ import Jewellery from "./pages/jewellery/jewellery";
 import Shirts from "./pages/shirts/shirts";
 import Shoes from "./pages/shoes/shoes";
 import Sunglasses from "./pages/sunglasses/sunglasses";
+import Sign from "./pages/Sign/Sign";
 import Cart from "./pages/cart/cart";
 import NotFound from "./pages/notFound/notFound";
-import Header from "./Header/Header";
-import Footer from "./Footer/footer";
 
+import Content from "./components/content/content";
+
+import Register from "./pages/Register/Register";
+import RouteLayout from "./pages/RouteLayout/RouteLayout";
 function App() {
   return (
     <>
-      <Header />
       <Container fluid>
         <Routes>
-          <Route path="/laptops" element={<Laptops />} />
-          <Route path="/mobiles" element={<Mobiles />} />
-          <Route path="/lighting" element={<Lighting />} />
-          <Route path="/dresses" element={<WomenDresses />} />
-          <Route path="/jewellery" element={<Jewellery />} />
-          <Route path="/shirts" element={<Shirts />} />
-          <Route path="/sheos" element={<Shoes />} />
-          <Route path="/sunglasses" element={<Sunglasses />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/details/:id" element={<ProductDetails />} />
+          <Route element={<RouteLayout />}>
+            <Route path="/" element={<Content />} />
+            <Route path="/laptops" element={<Laptops />} />
+            <Route path="/smartphones" element={<Mobiles />} />
+            <Route path="/lighting" element={<Lighting />} />
+            <Route path="/womens-dresses" element={<WomenDresses />} />
+            <Route path="/womens-jewellery" element={<Jewellery />} />
+            <Route path="/mens-shirts" element={<Shirts />} />
+            <Route path="/mens-shoes" element={<Shoes />} />
+            <Route path="/sunglasses" element={<Sunglasses />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/details/:id" element={<ProductDetails />} />
+          </Route>
+          <Route path="/sign" element={<Sign />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
-      <Footer />
     </>
   );
 }
