@@ -50,7 +50,7 @@ const Content = () => {
                     src={image}
                     // alt={i}
                     alt={`Slide ${i}`}
-                    className="d-block w-100"
+                    className="d-block w-75"
                   />
                 </div>
               ))}
