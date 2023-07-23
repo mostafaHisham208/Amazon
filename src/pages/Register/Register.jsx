@@ -7,9 +7,10 @@ import { auth } from "../../FirebaseConfig/FirebaseConfig";
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   function handleRegister(e) {
-    e.preventDefault();
+    // e.preventDefault();
+   
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -34,13 +35,14 @@ export default function Register() {
               <label htmlFor="name">Your Name</label>
               <input type="text" id="name" placeholder="First and Last name" />
               <label htmlFor="mobile">Mobile number or email</label>
-              <input type="text" id="mobile" onChange={(e) => setEmail(e)} />
+              <input type="text" id="mobile" onChange={(e) => setEmail(e.target.value)}  value={email}/>
               <label htmlFor="password">Password</label>
               <input
                 type="password"
                 id="password"
                 placeholder="At least 6 Characters"
-                onChange={(e) => setPassword(e)}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
               />
               <div className="alert">
                 <i className="fa-solid fa-info" style={{ color: "#629dba" }} />
@@ -62,7 +64,7 @@ export default function Register() {
                 Already have an account?<Link to="/Sign">Sign in</Link>
                 <i
                   className="fa-solid fa-caret-right"
-                  style={{ "font-size": "10px", color: "#0066c0" }}
+                  style={{ "fontSize": "10px", color: "#0066c0" }}
                 />
               </div>
             </div>

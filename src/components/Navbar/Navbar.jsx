@@ -12,7 +12,7 @@ export default function Navbar() {
   const[sta,setsta]= useState({
     xall:-28,
     yall:-28,
-    xmark:99,
+    xmark:101,
     ymark:1
 
   })
@@ -22,7 +22,7 @@ export default function Navbar() {
       setsta({
         yall:-28,
         xall:0,
-        xmark:99,
+        xmark:101,
 
       })
       

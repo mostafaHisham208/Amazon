@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable jsx-a11y/alt-text */
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import "./content.css";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
@@ -18,14 +18,28 @@ import img6 from "../../assets/b6.jpg";
 import img7 from "../../assets/b7.jpg";
 import img8 from "../../assets/b8.jpg";
 import { Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
 
 const Images = [img1, img2, img3, img4, img5, img6, img7, img8];
+
 const Content = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const { t, i18n } = useTranslation();
+  let [count, setCount] = useState(1);
 
-
+  useEffect(() => {
+    let interval;
+    if (!isHovered) {
+      interval = setInterval(() => {
+        // $(".background").carousel("next");
+        count < 8 ? setCount(count++) : setCount(0);
+        console.log(count);
+      }, 1000);
+    } else {
+      interval = setInterval(() => {
+        setCount(1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isHovered]);
   return (
     <>
       {/* BackGround */}
@@ -43,7 +57,7 @@ const Content = () => {
               {Images.map((image, i) => (
                 // <div className="carousel-item active" interval={5000}>
                 <div
-                  className={`carousel-item ${i === 0 ? "active" : ""}`}
+                  className={`carousel-item ${i === count ? "active" : ""}`}
                   key={i}
                 >
                   <img
@@ -66,7 +80,7 @@ const Content = () => {
                 className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span className="visually-hidden">{t('Previous')}</span>
+              <span className="visually-hidden">Previous</span>
             </button>
             <button
               className="carousel-control-next"
@@ -78,56 +92,56 @@ const Content = () => {
                 className="carousel-control-next-icon"
                 aria-hidden="true"
               ></span>
-              <span className="visually-hidden">{t('Next')}</span>
+              <span className="visually-hidden">Next</span>
             </button>
           </div>
         </div>
         <div className="Categories row">
           <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
             <div className="Categories-cards">
-              <h2 className="Categories-Title">{t('Electronics')}</h2>
+              <h2 className="Categories-Title">Electronics</h2>
               <img
                 className="Categories-Image"
                 src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Camera/XCM_Manual_1584325_5643573_379x304_1X._SY304_CB603062836_.jpg"
               />
               <Link className="Categories-Link" to="/laptops">
-              {t('Seemore')}
+                See more
               </Link>
             </div>
           </div>
           <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
             <div className="Categories-cards">
-              <h2 className="Categories-Title">{t('Womenswear')} </h2>
+              <h2 className="Categories-Title">Women's wear</h2>
               <img
                 className="Categories-Image"
                 src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenDresses_3868467_440x440_en_AE.jpg"
               />
               <Link className="Categories-Link" to="/womens-dresses">
-              {t('Seemore')}
+                See more
               </Link>
             </div>
           </div>
           <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
             <div className="Categories-cards">
-              <h2 className="Categories-Title">{t('Menswear')}  </h2>
+              <h2 className="Categories-Title">Men's wear</h2>
               <img
                 className="Categories-Image"
                 src="https://m.media-amazon.com/images/I/41+apisiepS._AC_UL600_FMwebp_QL65_.jpg"
               />
               <Link className="Categories-Link" to="/mens-shirts">
-              {t('Seemore')}
+                See more
               </Link>
             </div>
           </div>
           <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
             <div className="Categories-cards">
-              <h2 className="Categories-Title">{t('Jewelry')} </h2>
+              <h2 className="Categories-Title">Jewllery</h2>
               <img
                 className="Categories-Image"
                 src="https://images-eu.ssl-images-amazon.com/images/G/42/SL/DEC/GW/XCM_Manual_1396328_4379574_Egypt_EG_BAU_GW_DC_SL_Jewelry_379x304_1X._SY304_CB650636675_.jpg"
               />
               <Link className="Categories-Link" to="/womens-jewellery">
-              {t('Seemore')}
+                See more
               </Link>
             </div>
           </div>
@@ -135,9 +149,9 @@ const Content = () => {
         <div className="row mb-3 ">
           <div className="col-12 Category_Items_Carousel" id="Carousel">
             <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Electronics')}</h2>
+              <h2 className="Category_Items_Title">Electronics</h2>
               <Link className="Categories-Link" to="/laptops">
-              {t('Seemore')}
+                See more
               </Link>
             </div>
             <div id="carouselExample1" className="carousel slide">
@@ -153,8 +167,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div
@@ -166,8 +180,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonHeadphones')}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Head phones</p>
                       </div>
                     </div>
                     <div
@@ -179,8 +193,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                     <div
@@ -192,8 +206,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div
@@ -205,9 +219,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t('SaveonMusicalinstruments')}
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -221,9 +235,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t('SaveonMusicalinstruments')} 
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -233,8 +247,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Legion Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card2 Category_Items_Card">
@@ -243,8 +257,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLaptops')}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
+                        <p className="Item_Offer_Dis">Save on Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -253,9 +267,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto20%off')}</p>
+                        <p className="Item_Offer">Up to 20% off</p>
                         <p className="Item_Offer_Dis">
-                        {t('SaveonDesktopLcmonitors')} 
+                          Save on Desktop Lc monitors
                         </p>
                       </div>
                     </div>
@@ -265,8 +279,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                   </div>
@@ -283,7 +297,7 @@ const Content = () => {
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t('Previous')}</span>
+                <span className="visually-hidden">Previous</span>
               </button>
               <button
                 className="carousel-control-next"
@@ -296,7 +310,7 @@ const Content = () => {
                   className="carousel-control-next-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t('Next')}</span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>
@@ -305,9 +319,9 @@ const Content = () => {
         <div className="row mb-3 ">
           <div className="col-12 Category_Items_Carousel" id="Carousel">
             <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Jewelry')}</h2>
+              <h2 className="Category_Items_Title">Jewllery</h2>
               <Link className="Categories-Link" to="/womens-jewellery">
-              {t('Seemore')} 
+                See more
               </Link>
             </div>
 
@@ -321,8 +335,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div className="card mb-3 Category_Items_Card">
@@ -331,8 +345,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonHeadphones')}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Head phones</p>
                       </div>
                     </div>
                     <div className="card mb-3 card2 Category_Items_Card">
@@ -341,8 +355,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -351,8 +365,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -361,9 +375,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t('SaveonMusicalinstruments')}
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -377,9 +391,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t('SaveonMusicalinstruments')} 
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -389,8 +403,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Legion Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card2 Category_Items_Card">
@@ -399,8 +413,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLaptops')}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
+                        <p className="Item_Offer_Dis">Save on Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -409,9 +423,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('Upto20%off')}</p>
+                        <p className="Item_Offer">Up to 20% off</p>
                         <p className="Item_Offer_Dis">
-                        {t('SaveonDesktopLcmonitors')}
+                          Save on Desktop Lc monitors
                         </p>
                       </div>
                     </div>
@@ -421,8 +435,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                   </div>
@@ -439,7 +453,7 @@ const Content = () => {
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t('Previous')}</span>
+                <span className="visually-hidden">Previous</span>
               </button>
               <button
                 className="carousel-control-next"
@@ -452,7 +466,7 @@ const Content = () => {
                   className="carousel-control-next-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t('Next')}</span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>
@@ -460,9 +474,9 @@ const Content = () => {
         <div className="row mb-3 ">
           <div className="col-12 Category_Items_Carousel" id="Carousel">
             <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('TopSummerSale')}</h2>
+              <h2 className="Category_Items_Title">Top Summer Sale</h2>
               <Link className="Categories-Link" to="/womens-dresses">
-              {t('Seemore')}
+                See more
               </Link>
             </div>
 
@@ -548,7 +562,7 @@ const Content = () => {
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
+                <span className="visually-hidden">Previous</span>
               </button>
               <button
                 className="carousel-control-next"
@@ -561,7 +575,7 @@ const Content = () => {
                   className="carousel-control-next-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Next")}</span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>
@@ -570,10 +584,10 @@ const Content = () => {
         <div className="row mb-3 ">
           <div className="col-12 Category_Items_Carousel" id="Carousel">
             <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Menswear')}</h2>
+              <h2 className="Category_Items_Title">Men's clothing</h2>
               <Link className="Categories-Link" to="/mens-shirts">
-              {t('Seemore')}
-              </Link>  
+                See more
+              </Link>
             </div>
             <div id="carouselExample4" className="carousel slide">
               <div className="carousel-inner">
@@ -585,8 +599,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div className="card mb-3 Category_Items_Card">
@@ -595,8 +609,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonHeadphones")}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Head phones</p>
                       </div>
                     </div>
                     <div className="card mb-3 card2 Category_Items_Card">
@@ -605,8 +619,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -615,8 +629,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -625,9 +639,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")}
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -641,9 +655,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")}
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -653,8 +667,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLegionLaptops")}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Legion Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card2 Category_Items_Card">
@@ -663,8 +677,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLaptops")}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
+                        <p className="Item_Offer_Dis">Save on Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -673,9 +687,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto20%off")}</p>
+                        <p className="Item_Offer">Up to 20% off</p>
                         <p className="Item_Offer_Dis">
-                        {t("SaveonDesktopLcmonitors")}
+                          Save on Desktop Lc monitors
                         </p>
                       </div>
                     </div>
@@ -685,8 +699,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                   </div>
@@ -703,7 +717,7 @@ const Content = () => {
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
+                <span className="visually-hidden">Previous</span>
               </button>
               <button
                 className="carousel-control-next"
@@ -716,7 +730,7 @@ const Content = () => {
                   className="carousel-control-next-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Next")}</span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>
@@ -725,10 +739,9 @@ const Content = () => {
         <div className="row mb-3 ">
           <div className="col-12 Category_Items_Carousel" id="Carousel">
             <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Womenswear')}</h2>
+              <h2 className="Category_Items_Title">Women's clothing</h2>
               <Link className="Categories-Link" to="/womens-dresses">
-              {t('Seemore')}
-
+                See more
               </Link>
             </div>
 
@@ -742,8 +755,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div className="card mb-3 Category_Items_Card">
@@ -752,8 +765,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonHeadphones")}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Head phones</p>
                       </div>
                     </div>
                     <div className="card mb-3 card2 Category_Items_Card">
@@ -762,8 +775,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -772,8 +785,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
+                        <p className="Item_Offer">Up to 80% off</p>
+                        <p className="Item_Offer_Dis">Save on cameras</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -782,9 +795,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")} 
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -798,9 +811,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
                         <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")} 
+                          Save on Musical instruments
                         </p>
                       </div>
                     </div>
@@ -810,8 +823,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLegionLaptops")}</p>
+                        <p className="Item_Offer">Up to 30% off</p>
+                        <p className="Item_Offer_Dis">Save on Legion Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card2 Category_Items_Card">
@@ -820,8 +833,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLaptops")}</p>
+                        <p className="Item_Offer">Up to 50% off</p>
+                        <p className="Item_Offer_Dis">Save on Laptops</p>
                       </div>
                     </div>
                     <div className="card mb-3 card1 card2 Category_Items_Card">
@@ -830,9 +843,9 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("Upto20%off")}</p>
+                        <p className="Item_Offer">Up to 20% off</p>
                         <p className="Item_Offer_Dis">
-                        {t("SaveonDesktopLcmonitors")}
+                          Save on Desktop Lc monitors
                         </p>
                       </div>
                     </div>
@@ -842,8 +855,8 @@ const Content = () => {
                         className="card-img-top mx-auto d-block Category_Items_Image"
                       />
                       <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
+                        <p className="Item_Offer">EGP 200 and under</p>
+                        <p className="Item_Offer_Dis">Save on video games</p>
                       </div>
                     </div>
                   </div>
@@ -860,7 +873,7 @@ const Content = () => {
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
+                <span className="visually-hidden">Previous</span>
               </button>
               <button
                 className="carousel-control-next"
@@ -873,7 +886,7 @@ const Content = () => {
                   className="carousel-control-next-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Next")}</span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>
@@ -881,7 +894,7 @@ const Content = () => {
         <div className="row mb-3">
           <div className="col-12 Category_Items_Carousel" id="Carousel">
             <div className="d-flex">
-              <h2 className="Category_Items_Title">{t("Topsalethismonth")}</h2>
+              <h2 className="Category_Items_Title">Top sale this month</h2>
               <Link to="/laptops" className="Category_Items_Link">
                 See more
               </Link>
@@ -969,7 +982,7 @@ const Content = () => {
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
+                <span className="visually-hidden">Previous</span>
               </button>
               <button
                 className="carousel-control-next"
@@ -982,7 +995,7 @@ const Content = () => {
                   className="carousel-control-next-icon"
                   aria-hidden="true"
                 ></span>
-                <span className="visually-hidden">{t("Next")}</span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
           </div>
