@@ -51,17 +51,9 @@
   text-decoration: underline;
 }
 .row {
-  /* position: "relative"; */
+  position: "relative";
   display: "block";
   margin: "20px";
-}
-.carousel-control-prev,
-.carousel-control-next {
-  z-index: 50 !important;
-}
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  background-color: transparent;
 }
 .Category_Items_Carousel {
   /* height: auto;
