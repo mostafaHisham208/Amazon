@@ -51,7 +51,7 @@ export default function Navbar() {
       <div>
         <div className="navBar">
           <ul className="links">
-            <li className="all" onClick={handelMenu}>
+            <li className="all" onClick={handelMenu} >
               <i className="fa-solid fa-bars" /> {t('All')}
             </li>
             <li>
@@ -83,19 +83,6 @@ export default function Navbar() {
             </li>
           </ul>
           <img className="img" src={imgNav} />
-          <div className="mobile-screen">
-            <div className="show-icons">
-              <Link href="./index.html">
-                <i className="fa-solid fa-house" />
-              </Link>
-              <Link href="./Sign/Sign.html">
-                <i className="fa-solid fa-user" />
-              </Link>
-              <Link href="./Cart & Pages/card.html">
-                <i className="fa-solid fa-cart-shopping" />
-              </Link>
-            </div>
-          </div>
         </div>
         <div className="layout" />
         <div className="menu">
@@ -128,17 +115,6 @@ export default function Navbar() {
             <h4>{t('Digital')}</h4>
             <div
               className="d-flex align-items-center justify-content-between"
-              // style={{
-              //   display: "flex",
-              //   "-webkit-box-pack": "space-between",
-              //   "-webkit-justify-content": "space-between",
-              //   "-ms-flex-pack": "space-between",
-              //   "justify-content": "space-between",
-              //   "-webkit-align-items": "center",
-              //   "-webkit-box-align": "center",
-              //   "-ms-flex-align": "center",
-              //   "align-items": "center",
-              // }}
             >
               <span>{t('AmazonKindle')} </span>
               <i
@@ -186,13 +162,7 @@ export default function Navbar() {
             </div>
             <div
               className="d-flex align-items-center "
-              // style={{
-              //   display: "flex",
-              //   "-webkit-align-items": "center",
-              //   "-webkit-box-align": "center",
-              //   "-ms-flex-align": "center",
-              //   "align-items": "center",
-              // }}
+
             >
               <img src={flagImg} style={{ width: "20px" }} />
               <span style={{ marginLeft: "5px" }}>Egypt</span>
@@ -241,17 +211,7 @@ export default function Navbar() {
         
             <div
               className="d-flex align-items-center justify-content-between"
-              // style={{
-              //   display: "flex",
-              //   "-webkit-box-pack": "space-between",
-              //   "-webkit-justify-content": "space-between",
-              //   "-ms-flex-pack": "space-between",
-              //   "justify-content": "space-between",
-              //   "-webkit-align-items": "center",
-              //   "-webkit-box-align": "center",
-              //   "-ms-flex-align": "center",
-              //   "align-items": "center",
-              // }}
+
             >
               <span>{t('AmazonKindle')} </span>
               <i
