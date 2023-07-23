@@ -6,7 +6,7 @@ export default function Register() {
     <>
       <div>
         <div className="register">
-          <img src={logo} alt id="amazon-icon" />
+          <img src={logo} alt='' id="amazon-icon" />
           <div className="card">
             <form action="/ThankPage/thank.html" method="get" id="form">
               <h1>Create account</h1>
