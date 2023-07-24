@@ -1,0 +1,19 @@
+:root {
+  --mainColor: #317185;
+  --yellowColor: #fa9e1d;
+}
+.color-main {
+  color: #007185;
+}
+.form-check-input:checked {
+  background-color: #017285 !important;
+  border-color: #017285 !important;
+}
+.form-check-input {
+  overflow: hidden !important;
+}
+
+.form-check-input:focus {
+  box-shadow: none !important;
+  border-color: #ddd !important;
+}
