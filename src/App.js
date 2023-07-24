@@ -25,9 +25,9 @@ function App() {
 
   return (
     <>
-    <div dir={`${lang=='en'?'ltr':'rtl'}`}>
+    <div dir={`${lang=='en'?'ltr':'rtl'}`} className="p-0">
     <LangProvider value={{lang,setlang}}>
-      <Container fluid   >
+      <Container fluid   className="p-0">
         <Routes>
           <Route element={<RouteLayout />}>
             <Route path="/" element={<Content />} />

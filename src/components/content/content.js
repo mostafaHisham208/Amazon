@@ -2,12 +2,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable jsx-a11y/alt-text */
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, Component } from "react";
 import "./content.css";
-import Carousel from "react-bootstrap/Carousel";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { Container, Row, Col, Image } from "react-bootstrap";
+// import Carousel from "react-bootstrap/Carousel";
+// import Button from "react-bootstrap/Button";
+// import Card from "react-bootstrap/Card";
+// import { Container, Row, Col, Image } from "react-bootstrap";
 import Slider from "react-slick";
 import img1 from "../../assets/b1.jpg";
 import img2 from "../../assets/b2.jpg";
@@ -19,17 +19,94 @@ import img7 from "../../assets/b7.jpg";
 import img8 from "../../assets/b8.jpg";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-
 const Images = [img1, img2, img3, img4, img5, img6, img7, img8];
+
 const Content = () => {
   const [isHovered, setIsHovered] = useState(false);
   const { t, i18n } = useTranslation();
 
+  useEffect(() => {
+    let interval;
+    if (!isHovered) {
+      interval = setInterval(() => {
+        $(".background").carousel("next");
+      }, 3000);
+    }
+    return () => clearInterval(interval);
+  }, [isHovered]);
 
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 3,
+        },
+      },
+      {
+        breakpoint: 520,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  var settings2 = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 7,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          // initialSlide: 4,
+        },
+      },
+      {
+        breakpoint: 520,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
   return (
     <>
       {/* BackGround */}
-      <div className="container-fluid HomePage">
+      <div className="container-fluid HomePage p-0">
         <div>
           <div
             // style={{ height: "100vh" }}
@@ -50,11 +127,55 @@ const Content = () => {
                     src={image}
                     // alt={i}
                     alt={`Slide ${i}`}
-                    className="d-block w-100"
+                    className="d-block w-100 imagebackground"
                   />
                 </div>
               ))}
             </div>
+            
+            {/* 
+              <div className="carousel-item" interval={5000}>
+                <img
+                  src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2022/NTAWeclomePage/XCM_Manual_1437710_4757732_1500x250_2X.jpg"
+                  className="d-block w-100"
+                />
+              </div>
+              <div className="carousel-item" interval={5000}>
+                <img
+                  src="https://m.media-amazon.com/images/I/71qPipHhf6L._SX3000_.jpg"
+                  className="d-block w-100"
+                />
+              </div>
+              <div className="carousel-item" interval={5000}>
+                <img
+                  src="https://m.media-amazon.com/images/I/71mFYFC1ntL._SX3000_.jpg"
+                  className="d-block w-100"
+                />
+              </div>
+              <div className="carousel-item" interval={5000}>
+                <img
+                  src="https://m.media-amazon.com/images/I/61RH13onl1L._SX3000_.jpg"
+                  className="d-block w-100"
+                />
+              </div>
+              <div className="carousel-item" interval={5000}>
+                <img
+                  src="https://m.media-amazon.com/images/I/61YmPfq2eJL._SX3000_.jpg"
+                  className="d-block w-100"
+                />
+              </div>
+              <div className="carousel-item" interval={5000}>
+                <img
+                  src="https://m.media-amazon.com/images/I/71Gyeb6+A8L._SX3000_.jpg"
+                  className="d-block w-100"
+                />
+              </div>
+              <div className="carousel-item" interval={5000}>
+                <img
+                  src="https://m.media-amazon.com/images/I/61S7anSm3yL._SX3000_.jpg"
+                  className="d-block w-100"
+                />
+              </div> */}
 
             <button
               className="carousel-control-prev"
@@ -66,7 +187,7 @@ const Content = () => {
                 className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span className="visually-hidden">{t('Previous')}</span>
+              <span className="visually-hidden">Previous</span>
             </button>
             <button
               className="carousel-control-next"
@@ -78,13 +199,13 @@ const Content = () => {
                 className="carousel-control-next-icon"
                 aria-hidden="true"
               ></span>
-              <span className="visually-hidden">{t('Next')}</span>
+              <span className="visually-hidden">Next</span>
             </button>
           </div>
         </div>
         <div className="Categories row">
           <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
-            <div className="Categories-cards">
+          <div className="Categories-cards">
               <h2 className="Categories-Title">{t('Electronics')}</h2>
               <img
                 className="Categories-Image"
@@ -97,7 +218,19 @@ const Content = () => {
           </div>
           <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
             <div className="Categories-cards">
-              <h2 className="Categories-Title">{t('Womenswear')} </h2>
+            <h2 className="Categories-Title">{t('Jewelry')} </h2>
+              <img
+                className="Categories-Image"
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/SL/DEC/GW/XCM_Manual_1396328_4379574_Egypt_EG_BAU_GW_DC_SL_Jewelry_379x304_1X._SY304_CB650636675_.jpg"
+              />
+              <Link className="Categories-Link" to="/womens-jewellery">
+              {t('Seemore')}
+              </Link>
+            </div>
+          </div>
+          <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
+            <div className="Categories-cards">
+            <h2 className="Categories-Title">{t('Womenswear')} </h2>
               <img
                 className="Categories-Image"
                 src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenDresses_3868467_440x440_en_AE.jpg"
@@ -109,7 +242,7 @@ const Content = () => {
           </div>
           <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
             <div className="Categories-cards">
-              <h2 className="Categories-Title">{t('Menswear')}  </h2>
+            <h2 className="Categories-Title">{t('Menswear')}  </h2>
               <img
                 className="Categories-Image"
                 src="https://m.media-amazon.com/images/I/41+apisiepS._AC_UL600_FMwebp_QL65_.jpg"
@@ -119,876 +252,530 @@ const Content = () => {
               </Link>
             </div>
           </div>
-          <div className="p-2 col-12 col-md-6 col-lg-3 mb-2">
-            <div className="Categories-cards">
-              <h2 className="Categories-Title">{t('Jewelry')} </h2>
-              <img
-                className="Categories-Image"
-                src="https://images-eu.ssl-images-amazon.com/images/G/42/SL/DEC/GW/XCM_Manual_1396328_4379574_Egypt_EG_BAU_GW_DC_SL_Jewelry_379x304_1X._SY304_CB650636675_.jpg"
-              />
-              <Link className="Categories-Link" to="/womens-jewellery">
-              {t('Seemore')}
-              </Link>
-            </div>
-          </div>
         </div>
-        <div className="row mb-3 ">
-          <div className="col-12 Category_Items_Carousel" id="Carousel">
-            <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Electronics')}</h2>
+        <div className="slider-container">
+          <div className="d-flex">
+          <h2 className="Category_Items_Title">{t('Electronics')}</h2>
               <Link className="Categories-Link" to="/laptops">
               {t('Seemore')}
               </Link>
+          </div>
+          <Slider {...settings}>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/51QLFW1PUJL._AC_UF226,226_FMjpg_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto80%off')}</p>
+              <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+              </div>
             </div>
-            <div id="carouselExample1" className="carousel slide">
-              <div className="carousel-inner">
-                <div id="carousel1" className="carousel-item active">
-                  <div className=" d-flex">
-                    <div
-                      className="card mb-3 Category_Items_Card"
-                      style={{ width: "300px" }}
-                    >
-                      <img
-                        src="https://m.media-amazon.com/images/I/51QLFW1PUJL._AC_UF226,226_FMjpg_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
-                      </div>
-                    </div>
-                    <div
-                      className="card mb-3 Category_Items_Card"
-                      style={{ width: "300px" }}
-                    >
-                      <img
-                        src="https://m.media-amazon.com/images/I/41QgEpwYLdL._AC_UF226,226_FMjpg_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/41QgEpwYLdL._AC_UF226,226_FMjpg_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto30%off')}</p>
                         <p className="Item_Offer_Dis">{t('SaveonHeadphones')}</p>
-                      </div>
-                    </div>
-                    <div
-                      className="card mb-3 card2 Category_Items_Card"
-                      style={{ width: "300px" }}
-                    >
-                      <img
-                        src="https://m.media-amazon.com/images/I/41BFtfSlFJL._AC_UF226,226_FMjpg_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
-                      </div>
-                    </div>
-                    <div
-                      className="card mb-3 card1 card2 Category_Items_Card"
-                      style={{ width: "300px" }}
-                    >
-                      <img
-                        src="https://m.media-amazon.com/images/I/41LNkRBslPL._AC_SY200_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
-                      </div>
-                    </div>
-                    <div
-                      className="card mb-3 card1 card2 Category_Items_Card"
-                      style={{ width: "300px" }}
-                    >
-                      <img
-                        src="https://m.media-amazon.com/images/I/41PjTl7DtzL._AC_SY200_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
-                        <p className="Item_Offer_Dis">
-                        {t('SaveonMusicalinstruments')}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/41PjTl7DtzL._AC_SY200_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/41BFtfSlFJL._AC_UF226,226_FMjpg_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('EGP200andunder')}</p>
+              <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/41LNkRBslPL._AC_SY200_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto80%off')}</p>
+              <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/I/51fGSGZNPqL._AC_SX184_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto50%off')}</p>
+              <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Consumer_Electronics/XCM_Manual_1446398_4835988_379x304_1X._SY304_CB631345942_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto30%off')}</p>
+              <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Consumer_Electronics/XCM_Manual_1454862_4881441_379x304_1X._SY304_CB630947473_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto50%off')}</p>
                         <p className="Item_Offer_Dis">
                         {t('SaveonMusicalinstruments')} 
                         </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/51dvitonoTL._AC_SY200_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/31nPxO4OGvL._AC_SY200_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLaptops')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/31ay6TFTcGL._AC_SY200_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto20%off')}</p>
-                        <p className="Item_Offer_Dis">
-                        {t('SaveonDesktopLcmonitors')} 
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/51QLFW1PUJL._AC_UF226,226_FMjpg_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample1"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t('Previous')}</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample1"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t('Next')}</span>
-              </button>
             </div>
-          </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/41PjTl7DtzL._AC_SY200_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto50%off')}</p>
+                        <p className="Item_Offer_Dis">
+                        {t('SaveonMusicalinstruments')} 
+                        </p>
+              </div>
+            </div>
+          </Slider>
         </div>
 
-        <div className="row mb-3 ">
-          <div className="col-12 Category_Items_Carousel" id="Carousel">
-            <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Jewelry')}</h2>
+        <div className="slider-container">
+          <div className="d-flex">
+          <h2 className="Category_Items_Title">{t('Jewelry')}</h2>
               <Link className="Categories-Link" to="/womens-jewellery">
               {t('Seemore')} 
               </Link>
-            </div>
-
-            <div id="carouselExample2" className="carousel slide">
-              <div className="carousel-inner">
-                <div id="carousel1" className="carousel-item active">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/I/31pRBFXVWFL._AC_SX184_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/I/31hOErxVIYL._AC_SX184_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonHeadphones')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/I/41v6clopErL._AC_SX184_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/I/413nnm0kEuL._AC_SX184_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto80%off')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/I/31UlyGP-VHL._AC_SX184_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
-                        <p className="Item_Offer_Dis">
-                        {t('SaveonMusicalinstruments')}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/I/31UlyGP-VHL._AC_SX184_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
-                        <p className="Item_Offer_Dis">
-                        {t('SaveonMusicalinstruments')} 
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/612Wb2mdfkL._AC_UL480_QL65_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto30%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/I/31pRBFXVWFL._AC_SX184_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto50%off')}</p>
-                        <p className="Item_Offer_Dis">{t('SaveonLaptops')}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/51dj6rl4C3L._AC_UL480_QL65_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('Upto20%off')}</p>
-                        <p className="Item_Offer_Dis">
-                        {t('SaveonDesktopLcmonitors')}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/51YVFSBGMKL._AC_UL480_QL65_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t('EGP200andunder')}</p>
-                        <p className="Item_Offer_Dis">{t('Saveonvideogames')}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample2"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t('Previous')}</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample2"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t('Next')}</span>
-              </button>
-            </div>
           </div>
+          <Slider {...settings}>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/I/31pRBFXVWFL._AC_SX184_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+              <p className="Item_Offer">{t('Upto50%off')}</p>
+             <p className="Item_Offer_Dis"> {t('SaveonMusicalinstruments')} </p>
+              </div>
+            </div>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/I/31hOErxVIYL._AC_SX184_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto30%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/I/41v6clopErL._AC_SX184_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                 <p className="Item_Offer">{t("EGP200andunder")}</p>
+                <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/I/413nnm0kEuL._AC_SX184_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto80%off')}</p>
+                <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/I/31UlyGP-VHL._AC_SX184_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto50%off')}</p>
+                <p className="Item_Offer_Dis"> {t('SaveonMusicalinstruments')} </p>
+              </div>
+            </div>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/612Wb2mdfkL._AC_UL480_QL65_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto30%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/51dj6rl4C3L._AC_UL480_QL65_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                 <p className="Item_Offer">{t("Upto20%off")}</p>
+                 <p className="Item_Offer_Dis"> {t("SaveonDesktopLcmonitors")} </p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/51YVFSBGMKL._AC_UL480_QL65_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                 <p className="Item_Offer">{t("EGP200andunder")}</p>
+                <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
+              </div>
+            </div>
+          </Slider>
         </div>
-        <div className="row mb-3 ">
-          <div className="col-12 Category_Items_Carousel" id="Carousel">
-            <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('TopSummerSale')}</h2>
+
+        <div className="slider-container">
+          <div className="d-flex">
+          <h2 className="Category_Items_Title">{t('TopSummerSale')}</h2>
               <Link className="Categories-Link" to="/womens-dresses">
               {t('Seemore')}
               </Link>
-            </div>
-
-            <div id="carouselExample3" className="carousel slide">
-              <div className="carousel-inner">
-                <div id="carousel1" className="carousel-item active">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199173_200x200_1X._CB604510554_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199182_200x200_1X._CB604510533_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199185_200x200_1X._CB604510516_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199177_200x200_1X._CB604510471_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199181_200x200_1X._CB604510516_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199181_200x200_1X._CB604510516_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199172_200x200_1X._CB604510486_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199174_200x200_1X._CB604510486_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199176_200x200_1X._CB604510486_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199170_200x200_1X._CB604510486_.jpg"
-                        className="card-img-top mx-auto d-block Category_Offers_Image"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample3"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample3"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Next")}</span>
-              </button>
-            </div>
           </div>
+          <Slider {...settings2}>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199173_200x200_1X._CB604510554_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199182_200x200_1X._CB604510533_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199185_200x200_1X._CB604510516_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199177_200x200_1X._CB604510471_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199181_200x200_1X._CB604510516_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199172_200x200_1X._CB604510486_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199174_200x200_1X._CB604510486_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199176_200x200_1X._CB604510486_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Global_Consumer_Marketing/XCM_Manual_1498352_5199170_200x200_1X._CB604510486_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+          </Slider>
         </div>
 
-        <div className="row mb-3 ">
-          <div className="col-12 Category_Items_Carousel" id="Carousel">
-            <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Menswear')}</h2>
+        <div className="slider-container">
+          <div className="d-flex">
+          <h2 className="Category_Items_Title">{t('Menswear')}</h2>
               <Link className="Categories-Link" to="/mens-shirts">
               {t('Seemore')}
-              </Link>  
-            </div>
-            <div id="carouselExample4" className="carousel slide">
-              <div className="carousel-inner">
-                <div id="carousel1" className="carousel-item active">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/41KV6ivR+5L._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/41pSWFERRXL._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonHeadphones")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/31tAcZFAICL._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/31ASt2aJ8pS._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/31OC2Lurm8L._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/31OC2Lurm8L._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/41Ba4enXNgL._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLegionLaptops")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/317-2itXVzL._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLaptops")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/41GfiR4DGjL._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto20%off")}</p>
-                        <p className="Item_Offer_Dis">
-                        {t("SaveonDesktopLcmonitors")}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://m.media-amazon.com/images/I/31kWL6FNiSL._AC_SR400,600_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample4"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample4"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Next")}</span>
-              </button>
-            </div>
+              </Link>
           </div>
+          <Slider {...settings}>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/41KV6ivR+5L._AC_SR400,600_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto80%off')}</p>
+                <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/41pSWFERRXL._AC_SR400,600_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto30%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/31tAcZFAICL._AC_SR400,600_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                 <p className="Item_Offer">{t("EGP200andunder")}</p>
+                <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/31ASt2aJ8pS._AC_SR400,600_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto80%off')}</p>
+                <p className="Item_Offer_Dis">{t('Saveoncameras')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/31OC2Lurm8L._AC_SR400,600_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto50%off')}</p>
+                <p className="Item_Offer_Dis"> {t('SaveonMusicalinstruments')} </p>
+              </div>
+            </div>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/41Ba4enXNgL._AC_SR400,600_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto30%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card2 Category_Items_Card">
+              <img
+                src="https://m.media-amazon.com/images/I/317-2itXVzL._AC_SR400,600_.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto50%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+              </div>
+            </div>
+          </Slider>
         </div>
 
-        <div className="row mb-3 ">
-          <div className="col-12 Category_Items_Carousel" id="Carousel">
-            <div className="d-flex">
-              <h2 className="Category_Items_Title">{t('Womenswear')}</h2>
+        <div className="slider-container">
+          <div className="d-flex">
+          <h2 className="Category_Items_Title">{t('Womenswear')}</h2>
               <Link className="Categories-Link" to="/womens-dresses">
               {t('Seemore')}
 
               </Link>
-            </div>
-
-            <div id="carouselExample5" className="carousel slide">
-              <div className="carousel-inner">
-                <div id="carousel1" className="carousel-item active">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenDresses_3868467_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenShirt_3868466_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonHeadphones")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenEthnicWear_3868465_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenTops_3868463_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto80%off")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveoncameras")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensMainPage_WomenSports_3868587_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")} 
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensMainPage_WomenSports_3868587_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">
-                        {t("SaveonMusicalinstruments")} 
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenPants_3868469_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto30%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLegionLaptops")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenLongwear_3868453_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto50%off")}</p>
-                        <p className="Item_Offer_Dis">{t("SaveonLaptops")}</p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenTops_3868463_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("Upto20%off")}</p>
-                        <p className="Item_Offer_Dis">
-                        {t("SaveonDesktopLcmonitors")}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card mb-3 card1 card2 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenDresses_3868467_440x440_en_AE.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image"
-                      />
-                      <div className="card-body">
-                        <p className="Item_Offer">{t("EGP200andunder")}</p>
-                        <p className="Item_Offer_Dis">{t("Saveonvideogames")}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample5"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample5"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Next")}</span>
-              </button>
-            </div>
           </div>
+          <Slider {...settings}>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenDresses_3868467_440x440_en_AE.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto80%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonWomenswear')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenShirt_3868466_440x440_en_AE.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto30%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonWomenswear')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenEthnicWear_3868465_440x440_en_AE.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                 <p className="Item_Offer">{t("EGP200andunder")}</p>
+                 <p className="Item_Offer_Dis">{t('SaveonWomenswear')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenTops_3868463_440x440_en_AE.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto80%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonWomenswear')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card1 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensMainPage_WomenSports_3868587_440x440_en_AE.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto50%off')}</p>
+                <p className="Item_Offer_Dis"> {t('SaveonWomenswear')} </p>
+              </div>
+            </div>
+            <div className="card mb-3 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenPants_3868469_440x440_en_AE.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto30%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonWomenswear')}</p>
+              </div>
+            </div>
+            <div className="card mb-3 card2 Category_Items_Card">
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenLongwear_3868453_440x440_en_AE.jpg"
+                className="card-img-top mx-auto d-block Category_Items_Image"
+              />
+              <div className="card-body">
+                <p className="Item_Offer">{t('Upto50%off')}</p>
+                <p className="Item_Offer_Dis">{t('SaveonLegionLaptops')}</p>
+              </div>
+            </div>
+          </Slider>
         </div>
-        <div className="row mb-3">
-          <div className="col-12 Category_Items_Carousel" id="Carousel">
-            <div className="d-flex">
-              <h2 className="Category_Items_Title">{t("Topsalethismonth")}</h2>
+
+        <div className="slider-container">
+          <div className="d-flex">
+          <h2 className="Category_Items_Title">{t("Topsalethismonth")}</h2>
               <Link to="/laptops" className="Category_Items_Link">
-                See more
+              {t('Seemore')}
               </Link>
-            </div>
-
-            <div id="carouselExample6" className="carousel slide">
-              <div className="carousel-inner">
-                <div id="carousel1" className="carousel-item active">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5629330_200x200_1X._CB587557764_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5637871_200x200_1X._CB588218591_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5637898_200x200_1X._CB588218591_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5629372_200x200_1X._CB587557764_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5629353_200x200_1X._CB587557764_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className=" d-flex">
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5629353_200x200_1X._CB587557764_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5629360_200x200_1X._CB587557538_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5629319_200x200_1X._CB587557764_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5637897_200x200_1X._CB588218591_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                    <div className="card mb-3 card1 Category_Items_Card">
-                      <img
-                        src="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Home/XCM_Manual_1577418_5629332_200x200_1X._CB587557764_.jpg"
-                        className="card-img-top mx-auto d-block Category_Items_Image Category_Offers_Image"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample6"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Previous")}</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                id="arrows"
-                data-bs-target="#carouselExample6"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">{t("Next")}</span>
-              </button>
-            </div>
           </div>
+          <Slider {...settings2}>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673986_200x200_1X._CB601945812_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673933_200x200_1X._CB601945739_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673930_200x200_1X._CB601945812_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673913_200x200_1X._CB601945739_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673872_200x200_1X._CB601945812_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673925_200x200_1X._CB601945812_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673958_200x200_1X._CB601945812_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673912_200x200_1X._CB601945739_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673880_200x200_1X._CB601945739_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673885_200x200_1X._CB601944438_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673879_200x200_1X._CB601945812_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673936_200x200_1X._CB601945739_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673885_200x200_1X._CB601944438_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673886_200x200_1X._CB601945739_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673866_200x200_1X._CB601945739_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+            <div>
+              <img
+                src="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Kiosk/XCM_Manual_1587813_5673860_200x200_1X._CB601945812_.jpg"
+                className="card-img-top mx-auto d-block Category_Offers_Image"
+              />
+            </div>
+          </Slider>
         </div>
-        <div></div>
       </div>
+
+      <div></div>
     </>
   );
 };

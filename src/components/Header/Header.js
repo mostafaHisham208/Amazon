@@ -186,7 +186,7 @@ const resttoEN = () => {
             <Link to="/"  className="p-0">
               <div >
                 <img src={logo} alt="logo" 
-                 className="amazonlogo col-12"
+                 className="amazonlogo col-12 p-0"
                  />
                  </div>
               </Link>
@@ -282,7 +282,7 @@ const resttoEN = () => {
             <ul>
             <li className="position-relative me-1">
                 <Link to="/cart" className="d-flex" style={{flexDirection:`${sta.cartdirection}`}}>
-                  <img src={cartImg} alt="" className="navCartImage w-50" />
+                  <img src={cartImg} alt="" className="navCartImage" />
 
                   <span style={{  fontSize: "1.1vw" }}>
                     {t('cart')}
@@ -352,7 +352,8 @@ const resttoEN = () => {
           onMouseLeave={handellangshow}
         ></span>
         <div 
-          style={{ display: langisShown ? "block" : "none" ,
+          style={{
+            display: langisShown ? "block" : "none" ,
           position:"absolute", left: `${sta.xlang}vw`,
           top: `${sta.ylang}vw`
         }}
@@ -369,7 +370,7 @@ const resttoEN = () => {
 
           <div className="langselect">
             <input
-              className="form-check-input m-0"
+              className="form-check-input mx-1"
               type="radio"
               id="flexRadioDefault1"
               name="lang"
@@ -388,7 +389,7 @@ const resttoEN = () => {
 
           <div className="langselect">
             <input
-              className="form-check-input m-0"
+              className="form-check-input mx-1"
               type="radio"
               id="flexRadioDefault1"
               name="lang"

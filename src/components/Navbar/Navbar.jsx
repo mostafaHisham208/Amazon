@@ -10,8 +10,8 @@ export default function Navbar() {
 
   const { t } = useTranslation();
   const[sta,setsta]= useState({
-    xall:-28,
-    yall:-28,
+    xall:-29,
+    yall:-29,
     xmark:101,
     ymark:1
 
@@ -20,7 +20,7 @@ export default function Navbar() {
   const handleall=()=>{
     if(lang=='en'){
       setsta({
-        yall:-28,
+        yall:-29,
         xall:0,
         xmark:101,
 
