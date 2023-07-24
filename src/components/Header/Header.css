@@ -280,17 +280,17 @@ button:hover {
 .navsearch button.book {
   border-radius: 5% 0 0 5%;
 
-  background-color: #b3b3b3;
+  background-color: #f3f3f3;
 }
 
 .navsearch button.book:hover {
-  background-color: #919191;
+  background-color: #d2cfcf;
 }
 
 .navsearch button.search {
   width: 6%;
 
-  background-color: rgb(218, 171, 43);
+  background-color: #f7be6a;
 }
 
 .navsearch button.search:hover {
@@ -810,8 +810,7 @@ button:hover {
 
   .navsearch button.book {
     border-radius: 5% 0 0 5%;
-
-    background-color: #b3b3b3;
+    background-color: #919191;
   }
 
   .navsearch button.book:hover {
@@ -820,8 +819,10 @@ button:hover {
 
   .navsearch button.search {
     width: 6%;
-
     background-color: rgb(218, 171, 43);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .navsearch button.search:hover {

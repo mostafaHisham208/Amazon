@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import "./style.css";
 import logo from "../../assets/images/amazon-logo.svg";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../FirebaseConfig/FirebaseConfig";
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+  const [rePasswordError, setRePasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const navigate = useNavigate();
   function handleRegister(e) {
-    // e.preventDefault();
-   
-
+    e.preventDefault();
+    if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+      setEmailError("Invalid Email Format");
+    }else {
+      setEmailError("");
+    }
+    if (rePassword !== password) {
+      setRePasswordError("Password not identical");
+    }else {
+      setRePasswordError("")
+    }
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user.email);
+        navigate("/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
+        console.log(error);
       });
-    // Navigate("/");
   }
   return (
     <>
@@ -34,8 +43,14 @@ export default function Register() {
               <h1>Create account</h1>
               <label htmlFor="name">Your Name</label>
               <input type="text" id="name" placeholder="First and Last name" />
-              <label htmlFor="mobile">Mobile number or email</label>
-              <input type="text" id="mobile" onChange={(e) => setEmail(e.target.value)}  value={email}/>
+              <label htmlFor="mobile">Email</label>
+              <input
+                type="text"
+                id="mobile"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+              <div className="email-error">{emailError}</div>
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -49,7 +64,12 @@ export default function Register() {
                 Passwords must be at least 6 characters.
               </div>
               <label htmlFor="re-password">Re-enter password</label>
-              <input type="password" id="re-password" />
+              <input
+                type="password"
+                id="re-password"
+                onChange={(e) => setRePassword(e.target.value)}
+              />
+              <div className="re-pass-error">{rePasswordError}</div>
               <button type="submit" id="btn">
                 Continue
               </button>
@@ -64,7 +84,7 @@ export default function Register() {
                 Already have an account?<Link to="/Sign">Sign in</Link>
                 <i
                   className="fa-solid fa-caret-right"
-                  style={{ "fontSize": "10px", color: "#0066c0" }}
+                  style={{ fontSize: "10px", color: "#0066c0" }}
                 />
               </div>
             </div>

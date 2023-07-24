@@ -44,7 +44,7 @@ form #btn:hover {
 }
 form #name,#mobile,#password,#re-password {
     width: 100%;
-    margin: 2px 0 20px;
+    margin: 2px 0 10px;
     padding: 8px;
     border: 1px solid #e3e3e3;
     border-radius: 6px;
@@ -69,11 +69,23 @@ form .alert {
     font-size: 12px;
     color: #2b2b2b;
     margin-top: -10px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    margin-left: -8px;
 }
 .register p {
     margin: 20px 0;
     font-size: 12px;
+}
+.email-error {
+    font-size: 12px;
+    color: red;
+    margin-left: 4px;
+}
+.re-pass-error {
+    font-size: 12px;
+    color: red;
+    margin-left: 4px;
+    margin-bottom: 10px;
 }
 #register-link {
     text-decoration: none;
@@ -151,7 +163,7 @@ form .alert {
 }
 .bottom-section {
     width: 100%;
-    height: 15vh;
+    height: 12vh;
     position: relative;
     top: 110px;
     border-top:1px solid #eee;

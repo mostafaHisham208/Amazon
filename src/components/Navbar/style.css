@@ -77,6 +77,9 @@
     overflow-y: scroll;
     justify-content: flex-start;
   }
+  .navBar::-webkit-scrollbar {
+    display: none;
+}
   .navBar .links {
     flex-wrap: nowrap;
     margin: 0!important;
@@ -132,7 +135,6 @@
   position: absolute;
   left: 99%;
   top: 1%;
-
   cursor: pointer;
 }
 .header {

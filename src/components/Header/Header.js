@@ -29,8 +29,8 @@ export default function Header() {
 
   let allProduct = useSelector((state) => state.cart.cart);
 
-  var {lang,setlang}=   useContext(langContext)
-   
+  var { lang, setlang } = useContext(langContext)
+
   // console.log(allProduct.length);
 
   const [signInisShown, setsignInIsShown] = useState(false);
@@ -51,12 +51,12 @@ export default function Header() {
   const delay = ms => new Promise(
     resolve => setTimeout(resolve, ms)
   );
-   function  handelsigninshow()  {
+  function handelsigninshow() {
     setsignInIsShown(!signInisShown);
   }
 
-   function handellangshow() {
-    
+  function handellangshow() {
+
     setlangisShown(!langisShown);
   }
 
@@ -93,7 +93,7 @@ export default function Header() {
   };
 
   useEffect(() => {
-    
+
   }, [resultSearch]);
 
 
@@ -120,104 +120,103 @@ export default function Header() {
       console.log("not found");
     }
   };
-  const changelangtoEN=()=>{
+  const changelangtoEN = () => {
     resttoEN()
     setlang('en')
     i18n.changeLanguage('en')
   }
-  const changelangtoAR=()=>{
+  const changelangtoAR = () => {
     movelangAR()
     setlang('ar')
     i18n.changeLanguage('ar')
   }
 
- const[sta,setsta]= useState({
+  const [sta, setsta] = useState({
     xlang: 67,
     ylang: 3.8,
-    xlangarrow:72.7,
-    ylangarrow:2.9,
-    xsign:58,
-    ysign:3.8,
-    xsignarrow:82.3,
-    ysignarrow:0.9,
-    xsearch:22.6,
-    ysearch:7,
-    cartdirection:"row",
-     langdir:'rtl' 
+    xlangarrow: 72.7,
+    ylangarrow: 2.9,
+    xsign: 58,
+    ysign: 3.8,
+    xsignarrow: 82.3,
+    ysignarrow: 0.9,
+    xsearch: 22.6,
+    ysearch: 7,
+    cartdirection: "row",
+    langdir: 'rtl'
 
-});
+  });
 
 
-const movelangAR = () => {
+  const movelangAR = () => {
     setsta(
-        {
-            xlang: 20,
-            xsign:10,
-            xlangarrow:28.4,
-            xsignarrow:23.2,
-            xsearch:31.15,
-            cartdirection:"row-reverse",
-            langdir:'ltr'
-            
-        });
-};
-const resttoEN = () => {
-  setsta(
       {
-          xlang: 67,
-          xsign:52,
-          xlangarrow:72.7,
-          xsignarrow:82.3,
-          xsearch:22.6,
-          cartdirection:"row"
+        xlang: 20,
+        xsign: 10,
+        xlangarrow: 28.4,
+        xsignarrow: 23.2,
+        xsearch: 31.15,
+        cartdirection: "row-reverse",
+        langdir: 'ltr'
 
       });
-};
+  };
+  const resttoEN = () => {
+    setsta(
+      {
+        xlang: 67,
+        xsign: 52,
+        xlangarrow: 72.7,
+        xsignarrow: 82.3,
+        xsearch: 22.6,
+        cartdirection: "row"
+
+      });
+  };
 
   return (
     <>
-      <div 
+      <div
         className="container-fliud"
       >
         <nav className="navheader">
           <div id="left-nav">
             <ul>
               <li>
-            <Link to="/"  className="p-0">
-              <div >
-                <img src={logo} alt="logo" 
-                 className="amazonlogo col-12 p-0"
-                 />
-                 </div>
-              </Link>
-              </li>
-              <li  style={{width:"40%"}} className="locationdiv" 
-               >
-              <Link to="/">
-                <div className=" d-flex  flex-norap w-100" >
-                  <div
-                    className="col-4 p-0 d-flex align-items-end"
-                 
-                  >
-                    <img
-                      src={location}
-                      width="100%"
-                      height="65%"
-                      alt="logo"
-                      style={{ paddingBottom: "7%" }}
+                <Link to="/" className="p-0">
+                  <div >
+                    <img src={logo} alt="logo"
+                      className="amazonlogo col-12 p-0"
                     />
                   </div>
-
-                  <div className="col-8 px-0">
-                    <div className="headertextloc m-0 p-0">{t('Deliver')} </div>
-
-                    <div className="headertextloc2 m-0 p-0  ">{t('Egypt')}</div>
-                  </div>
-                </div>
                 </Link>
               </li>
-              </ul>
-        
+              <li style={{ width: "40%" }} className="locationdiv"
+              >
+                <Link to="/">
+                  <div className=" d-flex  flex-nowrap w-100" >
+                    <div
+                      className="col-4 p-0 d-flex align-items-end"
+                    >
+                      <img
+                        src={location}
+                        width="100%"
+                        height="65%"
+                        alt="logo"
+                        style={{ paddingBottom: "7%" }}
+                      />
+                    </div>
+
+                    <div className="col-8 px-0">
+                      <div className="headertextloc m-0 p-0">{t('Deliver')} </div>
+
+                      <div className="headertextloc2 m-0 p-0  ">{t('Egypt')}</div>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            </ul>
+
           </div>
 
           <div id="mobilediv">
@@ -235,11 +234,11 @@ const resttoEN = () => {
           <div className="navsearch">
             <button className="book">{t('All')} </button>
 
-            <input 
-           dir={!sta.langdir}        
-           id="searchInput"
+            <input
+              dir={!sta.langdir}
+              id="searchInput"
               type="search"
-              style={{ paddingLeft: "2%" ,paddingRight:"2%" }}
+              style={{ paddingLeft: "2%", paddingRight: "2%" }}
               onChange={handlesearch}
               value={query}
               name="search"
@@ -248,7 +247,7 @@ const resttoEN = () => {
               data-search
               onFocus={handelsearchshow}
 
-              // onBlur={handelsearchshow}
+            // onBlur={handelsearchshow}
             />
 
             <button className="search" type="submit" onClick={search}>
@@ -280,11 +279,11 @@ const resttoEN = () => {
 
           <div id="right-nav">
             <ul>
-            <li className="position-relative me-1">
-                <Link to="/cart" className="d-flex" style={{flexDirection:`${sta.cartdirection}`}}>
+              <li className="position-relative me-1">
+                <Link to="/cart" className="d-flex" style={{ flexDirection: `${sta.cartdirection}` }}>
                   <img src={cartImg} alt="" className="navCartImage" />
 
-                  <span style={{  fontSize: "1.1vw" }}>
+                  <span style={{ fontSize: "1.1vw" }}>
                     {t('cart')}
                   </span>
 
@@ -297,26 +296,26 @@ const resttoEN = () => {
                 </Link>
               </li>
               <li
-                style={{ width: "30%"  }}
+                style={{ width: "30%" }}
                 onMouseEnter={() => {
                   setsignInIsShown(true);
                 }}
                 onMouseLeave={handelsigninshow}
               >
                 <Link to="./sign" id="signinarrow">
-                  <div>{t('sign')}</div>
+                  <div>{t('Sign')}</div>
 
                   <span id="signarrow">{t('Account')}</span>
-                  </Link>
+                </Link>
               </li>
               <li
-                style={{ width: "17%",marginLeft:0 }}
+                style={{ width: "17%", marginLeft: 0 }}
                 onMouseEnter={() => {
-                  setlangisShown(true); 
+                  setlangisShown(true);
                 }}
                 onMouseLeave={handellangshow}
               >
-                <Link to='/'  className="langarrow"  style={{justifyContent: 'space-evenly',paddingTop: '13%',paddingRight:"17%"  ,alignItems: 'center',flexDirection:`${sta.cartdirection}`,alignContent: "stretch"}} >
+                <Link to='/' className="langarrow" style={{ justifyContent: 'space-evenly', paddingTop: '13%', paddingRight: "17%", alignItems: 'center', flexDirection: `${sta.cartdirection}`, alignContent: "stretch" }} >
                   <img src={egypt} alt="" />
 
                   <div>
@@ -327,11 +326,11 @@ const resttoEN = () => {
                 </Link>
               </li>
 
-           
 
-             
 
-           
+
+
+
             </ul>
           </div>
         </nav>
@@ -343,20 +342,22 @@ const resttoEN = () => {
           className="overlay"
           style={{ display: langisShown ? "block" : "none" }}
         />
-        <span 
+        <span
           id="spanlang"
-          style={{display: langisShown ? "block" : "none",
-          position:"absolute", left: `${sta.xlangarrow}vw`,
-          top: `${sta.ylangarrow}vw`}}
+          style={{
+            display: langisShown ? "block" : "none",
+            position: "absolute", left: `${sta.xlangarrow}vw`,
+            top: `${sta.ylangarrow}vw`
+          }}
           onMouseEnter={() => setlangisShown(true)}
           onMouseLeave={handellangshow}
         ></span>
-        <div 
+        <div
           style={{
-            display: langisShown ? "block" : "none" ,
-          position:"absolute", left: `${sta.xlang}vw`,
-          top: `${sta.ylang}vw`
-        }}
+            display: langisShown ? "block" : "none",
+            position: "absolute", left: `${sta.xlang}vw`,
+            top: `${sta.ylang}vw`
+          }}
           id="divlangitem"
           onMouseEnter={() => setlangisShown(true)}
           onMouseLeave={handellangshow}
@@ -376,13 +377,13 @@ const resttoEN = () => {
               name="lang"
 
               value="en"
-              onChange={()=>{changelangtoEN()}}
+              onChange={() => { changelangtoEN() }}
 
 
               defaultChecked
             />
 
-            <label>english - EN</label>
+            <label>English - EN</label>
           </div>
 
           <hr />
@@ -394,9 +395,9 @@ const resttoEN = () => {
               id="flexRadioDefault1"
               name="lang"
               value="ar"
-              onChange={()=>{changelangtoAR()}}
+              onChange={() => { changelangtoAR() }}
             />
-            <label>العربية -AR</label>
+            <label>العربية - AR</label>
           </div>
 
           <hr />
@@ -414,23 +415,25 @@ const resttoEN = () => {
           className="overlay"
           style={{ display: signInisShown ? "block" : "none" }}
         />
-        <span 
+        <span
           id="div-sign-arrow"
-          style={{  display: signInisShown ? "block" : "none",
-          position:"absolute", left: `${sta.xsignarrow}vw`,
-          top: `${sta.ysignarrow}vw`
-        }}
+          style={{
+            display: signInisShown ? "block" : "none",
+            position: "absolute", left: `${sta.xsignarrow}vw`,
+            top: `${sta.ysignarrow}vw`
+          }}
           onMouseEnter={() => setsignInIsShown(true)}
           onMouseLeave={handelsigninshow}
         ></span>{" "}
-        <div 
-          style={{ display: signInisShown ? "block" : "none",
-          transitionProperty: 'height',
-          transition:'1s'   ,       // style={{ display: "block" ,
+        <div
+          style={{
+            display: signInisShown ? "block" : "none",
+            transitionProperty: 'height',
+            transition: '1s',       // style={{ display: "block" ,
 
-          position:"absolute", left: `${sta.xsign}vw`,
-          top: `${sta.ysign}vw`
-           }}
+            position: "absolute", left: `${sta.xsign}vw`,
+            top: `${sta.ysign}vw`
+          }}
           id="div-sign-tem"
           onMouseEnter={() => setsignInIsShown(true)}
           onMouseLeave={handelsigninshow}
@@ -438,7 +441,7 @@ const resttoEN = () => {
           <div className="row d-flex justify-content-center flex-row flex-wrap m-0">
             <div className="col-10 d-flex justify-content-center ">
               <button type="button" className="btn btn-warning w-50 mt-3 ">
-                <Link to="./sign">{t('sign')}</Link>{" "}
+                <Link to="./sign">{t('Sign')}</Link>{" "}
               </button>
             </div>
 
@@ -536,11 +539,13 @@ const resttoEN = () => {
           onClick={() => setSearchIsShown(false)}
         />
 
-        <div 
+        <div
           dir={!sta.langdir}
-          style={{ display: searchIsShown ? "block" : "none" ,
-          position:"absolute", left: `${sta.xsearch}%`,
-          top: `${sta.ysearch}%`}}
+          style={{
+            display: searchIsShown ? "block" : "none",
+            position: "absolute", left: `${sta.xsearch}%`,
+            top: `${sta.ysearch}%`
+          }}
           //  onClick={() => setSearchIsShown(true)}
 
           id="searchResults"

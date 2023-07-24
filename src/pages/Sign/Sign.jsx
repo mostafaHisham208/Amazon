@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import "./style.css";
 import logo from "../../assets/images/amazon-logo.svg";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../../FirebaseConfig/FirebaseConfig";
+import { auth } from "../../FirebaseConfig/FirebaseConfig";
 export default function Sign() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  async function handleSign(e) {
+  function handleSign(e) {
     e.preventDefault();
-    try {
-      // const user = await signInWithEmailAndPassword(auth, email, password);
-      // console.log(user);
-      Navigate("./Home");
-    } catch (e) {
-      console.log(e);
-    }
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.email);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-
   return (
     <>
       <div className="sign">
@@ -27,13 +29,17 @@ export default function Sign() {
           <form id="SignForm" onSubmit={(e) => handleSign(e)}>
             <h1>Sign in</h1>
             <label htmlFor="email">Email</label>
-            <input type="text" id="email" onChange={(e) => setEmail(e)} />
+            <input
+              type="text"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <div className="error-msg"></div>
             <label htmlFor="email">Password</label>
             <input
               type="password"
               id="password"
-              onChange={(e) => setPassword(e)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div className="pass-msg" />
             <button type="submit" id="btn">
