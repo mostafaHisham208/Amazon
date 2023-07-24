@@ -42,7 +42,7 @@ export default function Sign() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className="pass-msg" />
-            <button type="submit" id="btn">
+            <button type="submit" id="btn-sign">
               Continue
             </button>
           </form>
@@ -66,7 +66,7 @@ export default function Sign() {
         <div className="line" />
 
         <Link to="/register" id="create-btn">
-          Create your New Amazon Account
+          Create Amazon Account
         </Link>
       </div>
       <div className="bottom-section-sign">

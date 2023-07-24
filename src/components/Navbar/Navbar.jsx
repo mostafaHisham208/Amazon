@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style.css";
 import imgNav from "../../assets/images/XCM_Manual_1550677_5471696_400x39_2X._CB592483028_.jpg";
 import flagImg from "../../assets/images/egypt.png";
@@ -18,7 +18,7 @@ export default function Navbar() {
   })
  
   const handleall=()=>{
-    if(lang=='en'){
+    if(lang =='en'){
       setsta({
         yall:-29,
         xall:0,
@@ -58,31 +58,31 @@ export default function Navbar() {
               <Link to="/">{t('Home')}</Link>
             </li>
             <li>
-              <Link to="/laptops">{t('laptops')}</Link>
+              <Link to="/laptops">{t('Laptops')}</Link>
             </li>
             <li>
               <Link to="/womens-jewellery">{t('Jewelry')}</Link>
             </li>
             <li>
-              <Link to="/sunglasses">{t('sunglasses')}</Link>
+              <Link to="/sunglasses">{t('Sunglasses')}</Link>
             </li>
             <li>
-              <Link to="/mens-shoes">{t('shoes')}</Link>
+              <Link to="/mens-shoes">{t('Shoes')}</Link>
             </li>
             <li>
-              <Link to="/mens-shirts">{t('shirts')}</Link>
+              <Link to="/mens-shirts">{t('Shirts')}</Link>
             </li>
             <li>
-              <Link to="/womens-dresses">{t('dresses')}</Link>
+              <Link to="/womens-dresses">{t('Dresses')}</Link>
             </li>
             <li>
-              <Link to="/lighting">{t('lighting')}</Link>
+              <Link to="/lighting">{t('Lighting')}</Link>
             </li>
             <li>
-              <Link to="/smartphones">{t('mobiles')}</Link>
+              <Link to="/smartphones">{t('Mobiles')}</Link>
             </li>
           </ul>
-          <img className="img" src={imgNav} />
+          <img className="img" src={imgNav} alt=""/>
         </div>
         <div className="layout" />
         <div className="menu">
@@ -164,7 +164,7 @@ export default function Navbar() {
               className="d-flex align-items-center "
 
             >
-              <img src={flagImg} style={{ width: "20px" }} />
+              <img src={flagImg} style={{ width: "20px" }} alt=""/>
               <span style={{ marginLeft: "5px" }}>Egypt</span>
             </div>
           </div>
@@ -222,28 +222,28 @@ export default function Navbar() {
           </div>
           <div className="shop">
             <h4>{t('ShopByCategory')}</h4>
-            <Link href="./Cart & Pages/electronics.html">
+            <Link to="/laptops">
               <span>{t('Electronics')}</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
             </Link>
-            <Link href="./Cart & Pages/jewelery.html">
+            <Link to="/womens-jewellery">
               <span>{t('Jewelry')}</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
             </Link>
-            <Link href="./Cart & Pages/man.html">
+            <Link to="/mens-shirts">
               <span>{t('Menclothing')}</span>
               <i
                 className="fa-solid fa-angle-right"
                 style={{ color: "#777" }}
               />
             </Link>
-            <Link href="./Cart & Pages/women.html">
+            <Link to="/womens-dresses">
               <span>{t('Womenclothing')}</span>
               <i
                 className="fa-solid fa-angle-right"
@@ -253,22 +253,20 @@ export default function Navbar() {
           </div>
           <div className="help">
             <h4>{t('Help')} &amp; {t('Settings')}</h4>
-            <Link href="./Sign/Sign.html">{t('YourAccount')}</Link>
+            <Link to="sign">{t('YourAccount')}</Link>
             <div>
-              <i className="fa-solid fa-earth-americas" />{t('English')} 
+              <i className="fa-solid fa-earth-americas me-2" />{t('English')} 
             </div>
             <div
               className="d-flex align-items-center justify-content-between"
-              // style={{
-              //   display: "flex",
-              //   "-webkit-align-items": "center",
-              //   "-webkit-box-align": "center",
-              //   "-ms-flex-align": "center",
-              //   "align-items": "center",
-              // }}
             >
-              <img src={flagImg} style={{ width: "20px" }} />
+              <img src={flagImg} style={{ width: "20px" }} alt=""/>
               <span style={{ marginLeft: "5px" }}>{t('Egypt')}</span>
+            </div>
+            <div
+              className="d-flex align-items-center justify-content-between p-3"
+            >
+              <span style={{ marginLeft: "5px" }}>{t('Sign Out')}</span>
             </div>
           </div>
         </div>

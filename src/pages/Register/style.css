@@ -29,18 +29,19 @@
 form #btn {
     width: 100%;
     color: #645320;
-    border: 1px solid #806b2a;
+    border: none;
+    font-size: 13px;
     padding: 8px 0;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
-    background: #f3d078;
-    background: -webkit-linear-gradient(top,#f7dfa5,#f0c14b);
-    background: linear-gradient(to bottom,#f7dfa5,#f0c14b)
+    background-color: #f8da17;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 form #btn:hover {
-    background: #f1c860;
-    background: -webkit-linear-gradient(top,#f5d78e,#eeb933);
-    background: linear-gradient(to bottom,#f5d78e,#eeb933);
+    background-color: #e0c514;
 }
 form #name,#mobile,#password,#re-password {
     width: 100%;
