@@ -140,8 +140,8 @@ export default function Header() {
     ysign: 3.8,
     xsignarrow: 82.3,
     ysignarrow: 0.9,
-    xsearch: 22.6,
-    ysearch: 7,
+    xsearch: 22,
+    ysearch: 7.4,
     cartdirection: "row",
     langdir: 'rtl'
 
@@ -168,7 +168,7 @@ export default function Header() {
         xsign: 52,
         xlangarrow: 72.7,
         xsignarrow: 82.3,
-        xsearch: 22.6,
+        xsearch: 22,
         cartdirection: "row"
 
       });
@@ -303,7 +303,7 @@ export default function Header() {
                 onMouseLeave={handelsigninshow}
               >
                 <Link to="./sign" id="signinarrow">
-                  <div>{t('Sign')}</div>
+                  <div>{t('sign')}</div>
 
                   <span id="signarrow">{t('Account')}</span>
                 </Link>

@@ -312,13 +312,13 @@ button:hover {
 #searchResults {
   position: fixed;
 
-  left: 22.9%;
+  left: 22%;
 
-  top: 8.2%;
+  top: 7.4%;
 
   height: 70%;
 
-  width: 46.3%;
+  width: 47.2%;
 
   background-color: white;
   border: 1px solid #919191;
