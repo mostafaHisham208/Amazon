@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/Amazon/static/css/main.2d6ea309.css",
+    "main.js": "/Amazon/static/js/main.5e2910f7.js",
+    "static/media/b4.jpg": "/Amazon/static/media/b4.9261f1b76306762e5cf9.jpg",
+    "static/media/b5.jpg": "/Amazon/static/media/b5.c785d0d27458a47ee557.jpg",
+    "static/media/b1.jpg": "/Amazon/static/media/b1.e3eeedd5e41a8d40be06.jpg",
+    "static/media/b3.jpg": "/Amazon/static/media/b3.7b7f5c892918f9fc6c54.jpg",
+    "static/media/b2.jpg": "/Amazon/static/media/b2.9d5bf0d5fad005d4fa0b.jpg",
+    "static/media/b7.jpg": "/Amazon/static/media/b7.8387d89e31907e9e0d03.jpg",
+    "static/media/b6.jpg": "/Amazon/static/media/b6.5f121430a8a4274840fc.jpg",
+    "static/media/b8.jpg": "/Amazon/static/media/b8.c3a0a848d0911d21010a.jpg",
+    "static/media/amazon-logo-editorial-free-vector.jpg": "/Amazon/static/media/amazon-logo-editorial-free-vector.5498fc16e86cf7b29e1d.jpg",
+    "static/media/XCM_Manual_1550677_5471696_400x39_2X._CB592483028_.jpg": "/Amazon/static/media/XCM_Manual_1550677_5471696_400x39_2X._CB592483028_.09292524c2a80aab05f5.jpg",
+    "static/media/amazonlogo3.jpg": "/Amazon/static/media/amazonlogo3.8569f906537ebc5d10bc.jpg",
+    "static/media/amazon-logo.svg": "/Amazon/static/media/amazon-logo.5427427ad969a7ddbee4d008415909d9.svg",
+    "static/media/slick.svg": "/Amazon/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Amazon/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "index.html": "/Amazon/index.html",
+    "static/media/slick.ttf": "/Amazon/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/Amazon/static/media/slick.295183786cd8a1389865.woff",
+    "main.2d6ea309.css.map": "/Amazon/static/css/main.2d6ea309.css.map",
+    "main.5e2910f7.js.map": "/Amazon/static/js/main.5e2910f7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d6ea309.css",
+    "static/js/main.5e2910f7.js"
+  ]
+}
